@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://2dulyhghfums"]
+
+[ext_resource type="PackedScene" uid="uid://dlov8br4qtnw5" path="res://scenes/game/entities/characters/slime/slime.tscn" id="1_fno4b"]
+[ext_resource type="Script" path="res://main_world.gd" id="1_l6yq4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6c88i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82lvi"]
+size = Vector2(491, 29)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_l6yq4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_6c88i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(505, 104)
+shape = SubResource("RectangleShape2D_82lvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(240.5, 55.5)
+shape = SubResource("RectangleShape2D_82lvi")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -5.0
+offset_top = 41.0
+offset_right = 486.0
+offset_bottom = 70.0
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/ColorRect"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 48.0
+offset_right = 756.0
+offset_bottom = 78.0
+
+[node name="Slime" parent="StaticBody2D/ColorRect" instance=ExtResource("1_fno4b")]
+position = Vector2(165, -22)

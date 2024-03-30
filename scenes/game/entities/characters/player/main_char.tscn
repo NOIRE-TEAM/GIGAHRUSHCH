@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://co7l3sik6f6yn"]
+
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/Player.gd" id="1_kp5r5"]
+[ext_resource type="SpriteFrames" uid="uid://dr7w1yrwbd7lo" path="res://scenes/game/entities/characters/player/player_animations/main_char.tres" id="2_g07h5"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/FSM.gd" id="3_5wey7"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/idle.gd" id="4_l4l0p"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/run.gd" id="5_se8ys"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/air.gd" id="6_cmqxk"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/attack.gd" id="7_oc8sy"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/attack#2.gd" id="8_i2vrf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdngt"]
+height = 46.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(5, 6)
+collision_layer = 2
+script = ExtResource("1_kp5r5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, 1)
+scale = Vector2(0.158203, 0.202586)
+sprite_frames = ExtResource("2_g07h5")
+animation = &"idle"
+frame_progress = 0.943509
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 1)
+shape = SubResource("CapsuleShape2D_cdngt")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Camera2D")
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="Attack#2" type="Area2D" parent="Zones"]
+position = Vector2(-5, -6)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/Attack#2"]
+polygon = PackedVector2Array(4, -13, 5, 3, 7, 21, 7, 21, -1, 31, 33, 28, 49, 22, 56, 12, 51, -1, 40, -7)
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_5wey7")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("4_l4l0p")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("5_se8ys")
+
+[node name="Air" type="Node" parent="FSM"]
+script = ExtResource("6_cmqxk")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("7_oc8sy")
+
+[node name="Attack#2" type="Node" parent="FSM"]
+script = ExtResource("8_i2vrf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="L_state" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -42.0
+offset_right = 17.0
+offset_bottom = -19.0
+text = "State"
+metadata/_edit_use_anchors_ = true
+
+[node name="L_hp" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -83.0
+offset_right = 35.0
+offset_bottom = -60.0
+text = "HP"
+metadata/_edit_use_anchors_ = true
+
+[node name="L_direction" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -63.0
+offset_right = 35.0
+offset_bottom = -40.0
+text = "Direction"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack#2" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Zones/Attack#2" to="FSM/Attack#2" method="_on_attack_2_area_entered"]
