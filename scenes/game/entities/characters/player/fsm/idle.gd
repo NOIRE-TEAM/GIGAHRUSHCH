@@ -15,8 +15,8 @@ func inner_physics_process(_delta):
 	#if Input.is_action_just_pressed("ui_attack_2"):
 		#state_machine.change_to("Attack#2")
 		#
-	#if Input.is_action_just_pressed("ui_jump"):
-		#state_machine.change_to("Air", {do_jump = true})
+	if Input.is_action_just_pressed("ui_jump"):
+		state_machine.change_to("Air", {do_jump = true})
 	
 	if (Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right")):
 		pass
