@@ -1,15 +1,36 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlov8br4qtnw5"]
+[gd_scene load_steps=16 format=3 uid="uid://dlov8br4qtnw5"]
 
 [ext_resource type="Script" path="res://scenes/game/entities/characters/slime/slime.gd" id="1_qq6bl"]
 [ext_resource type="Texture2D" uid="uid://c6g58crvw2u2n" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-hurt-0.png" id="1_s6xdt"]
 [ext_resource type="Texture2D" uid="uid://c5v8cl446wbx1" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-hurt-1.png" id="2_ddwus"]
+[ext_resource type="Texture2D" uid="uid://buasod6ja34a0" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-idle-0.png" id="2_jlvst"]
 [ext_resource type="Texture2D" uid="uid://dlcifaugb58mq" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-hurt-2.png" id="3_d3akk"]
+[ext_resource type="Texture2D" uid="uid://pkk7sya0ds35" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-idle-1.png" id="3_i63mf"]
 [ext_resource type="Texture2D" uid="uid://bqcuh4fp1jgtp" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-hurt-3.png" id="4_630hg"]
+[ext_resource type="Texture2D" uid="uid://dtgso1os26a5b" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-idle-2.png" id="4_iiiqs"]
+[ext_resource type="Texture2D" uid="uid://rvuliiak45pr" path="res://scenes/game/entities/characters/slime/Individual Sprites/slime-idle-3.png" id="5_a4tg1"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/slime/Front.gd" id="6_rmvqd"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/slime/Back.gd" id="7_07snx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v4g0c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jlvst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i63mf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iiiqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a4tg1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_s6xdt")
@@ -47,9 +68,7 @@ script = ExtResource("1_qq6bl")
 position = Vector2(6.5, -5.75)
 scale = Vector2(1.40625, 1.46)
 sprite_frames = SubResource("SpriteFrames_v4g0c")
-animation = &"take_hit"
-frame = 3
-frame_progress = 1.0
+animation = &"idle"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

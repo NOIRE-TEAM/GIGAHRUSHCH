@@ -8,12 +8,12 @@ func enter(msg: Dictionary = {}):
 	
 func inner_physics_process(delta):
 	
-	if player.velocity.y <0:
-		player.animation.play("jump")
-	elif player.velocity.y ==0:
-		player.animation.play("jump_to_fall")
-	else:
-		player.animation.play("fall")
+	#if player.velocity.y <0:
+		#player.animation.play("jump")
+	#elif player.velocity.y ==0:
+		#player.animation.play("jump_to_fall")
+	#else:
+		#player.animation.play("fall")
 	
 	player.velocity.y += player.gravity * delta
 	

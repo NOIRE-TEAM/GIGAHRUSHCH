@@ -10,8 +10,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation = $AnimatedSprite2D
 
+
+
 func _physics_process(delta):
-	# Add the gravity.
+	animation.play("idle")
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
