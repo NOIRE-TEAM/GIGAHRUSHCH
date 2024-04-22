@@ -2,14 +2,19 @@ extends Control
 
 @export var button_group:ButtonGroup
 
+func _ready():
+	$Worlds.hide()
+	$Settings.hide()
+	$Main.show()
+
 func _on_choose_world_pressed():
 	$Main.hide()
 	$Worlds.show()
 
 
 func _on_options_pressed():
-	#get_tree().change_scene_to_file("res://scenes/gui/menus/test_menu_scene.tscn")
-	pass
+	$Main.hide()
+	$Settings.show()
 
 
 func _on_exit_pressed():
@@ -26,3 +31,12 @@ func _on_play_pressed():
 	if pressed_button != null:
 		get_tree().change_scene_to_file("res://scenes/gui/menus/test_menu_scene.tscn")
 
+
+
+func _on_close_settings_pressed():
+	$Settings.hide()
+	$Main.show()
+
+
+func _on_close_settings_mouse_entered():
+	$HoverButton.play()
