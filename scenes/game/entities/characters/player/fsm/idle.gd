@@ -5,16 +5,16 @@ func enter(_msg: Dictionary = {}):
 	$"../../Control/L_state".set_text(name)
 	
 func inner_physics_process(_delta):
-	
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 		#
-	#if Input.is_action_just_pressed("ui_attack"):
-		#state_machine.change_to("Attack")
+	if Input.is_action_just_pressed("ui_attack"):
+		state_machine.change_to("Attack")
+		
+	if Input.is_action_just_pressed("ui_attack_2"):
+		state_machine.change_to("Attack#2")
 		#
-	#if Input.is_action_just_pressed("ui_attack_2"):
-		#state_machine.change_to("Attack#2")
-		#
+	player.move_and_slide()
 	if Input.is_action_just_pressed("ui_jump"):
 		state_machine.change_to("Air", {do_jump = true})
 	

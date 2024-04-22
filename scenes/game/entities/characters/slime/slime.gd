@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation = $AnimatedSprite2D
-
+@onready var hitboxes = $HitBoxes
 
 
 func _physics_process(delta):
@@ -21,7 +21,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func take_hit():
+func take_hit(value:):
+	$Label2.set_text("Attack power: %s" % value)
 	animation.play("take_hit")
 	$Timer.start()
 

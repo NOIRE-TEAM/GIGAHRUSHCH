@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnu8687sm7nyw"]
+
+[ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/Wizard.gd" id="1_tqqiq"]
+[ext_resource type="SpriteFrames" uid="uid://bujc36wbl8l4s" path="res://scenes/game/entities/characters/wizard/new_sprite_frames.tres" id="2_8jjaw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukcw0"]
+height = 46.0
+
+[node name="Wizard" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_tqqiq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -27)
+sprite_frames = ExtResource("2_8jjaw")
+animation = &"walk"
+frame_progress = 0.979366
+speed_scale = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ukcw0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 22.0
+offset_bottom = -24.0
+text = "Label"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -69.0
+offset_right = 22.0
+offset_bottom = -46.0
+text = "Label2"
+
+[node name="HitZones" type="Node2D" parent="."]
+
+[node name="WatchZone" type="Area2D" parent="HitZones"]
+collision_layer = 8
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitZones/WatchZone"]
+polygon = PackedVector2Array(37, 17, 279, 19, 344, -53, 285, -109, 36, -34)
+
+[node name="Mazzle" type="Marker2D" parent="."]
+position = Vector2(22, -21)
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="HitZones/WatchZone" to="." method="_on_watch_zone_body_entered"]
+[connection signal="body_exited" from="HitZones/WatchZone" to="." method="_on_watch_zone_body_exited"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
