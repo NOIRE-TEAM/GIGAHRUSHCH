@@ -1,0 +1,419 @@
+[gd_resource type="SpriteFrames" load_steps=102 format=3 uid="uid://dkwquo6tsf6gf"]
+
+[ext_resource type="Texture2D" uid="uid://bugu1fith3q8r" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0000.png" id="1_4woa4"]
+[ext_resource type="Texture2D" uid="uid://ipofcb1axpxb" path="res://scenes/game/entities/characters/wizard/fireball/1.png" id="1_x0yaa"]
+[ext_resource type="Texture2D" uid="uid://dxgjo3m33l831" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0001.png" id="2_nk32o"]
+[ext_resource type="Texture2D" uid="uid://nu8uowwqmx6u" path="res://scenes/game/entities/characters/wizard/fireball/2.png" id="2_uxo7u"]
+[ext_resource type="Texture2D" uid="uid://cqs7uj0deanum" path="res://scenes/game/entities/characters/wizard/fireball/3.png" id="3_koe1x"]
+[ext_resource type="Texture2D" uid="uid://b5n1ujdgjoq7d" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0002.png" id="3_yhy85"]
+[ext_resource type="Texture2D" uid="uid://baiki4gaiawk0" path="res://scenes/game/entities/characters/wizard/fireball/4.png" id="4_e64vj"]
+[ext_resource type="Texture2D" uid="uid://horhs1otnmdq" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0003.png" id="4_oi6v1"]
+[ext_resource type="Texture2D" uid="uid://cqi2j1irjmry3" path="res://scenes/game/entities/characters/wizard/fireball/5.png" id="5_6b5cc"]
+[ext_resource type="Texture2D" uid="uid://dswymhbnisucq" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0004.png" id="5_j5vlb"]
+[ext_resource type="Texture2D" uid="uid://svlj4eowuje5" path="res://scenes/game/entities/characters/wizard/fireball/6.png" id="6_73rvl"]
+[ext_resource type="Texture2D" uid="uid://cji85dfl36ef" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0005.png" id="6_r1tus"]
+[ext_resource type="Texture2D" uid="uid://crmx2tw4qh3h6" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0006.png" id="7_t8yxh"]
+[ext_resource type="Texture2D" uid="uid://dl1ykqxckli4u" path="res://scenes/game/entities/characters/wizard/fireball/7.png" id="7_uk4cb"]
+[ext_resource type="Texture2D" uid="uid://hpnc1qek5eht" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0007.png" id="8_fciwv"]
+[ext_resource type="Texture2D" uid="uid://ctu4wvubljj07" path="res://scenes/game/entities/characters/wizard/fireball/8.png" id="8_fs6jj"]
+[ext_resource type="Texture2D" uid="uid://dme8qqjhs1s1b" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0008.png" id="9_84b02"]
+[ext_resource type="Texture2D" uid="uid://dpx7x0v8r8x04" path="res://scenes/game/entities/characters/wizard/fireball/9.png" id="9_hp6sm"]
+[ext_resource type="Texture2D" uid="uid://w03wp8c6rw6x" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0009.png" id="10_5il50"]
+[ext_resource type="Texture2D" uid="uid://dk4gp5dc7c5a2" path="res://scenes/game/entities/characters/wizard/fireball/10.png" id="10_ecb18"]
+[ext_resource type="Texture2D" uid="uid://dyhsotfkeo7cs" path="res://scenes/game/entities/characters/wizard/fireball/11.png" id="11_jabnc"]
+[ext_resource type="Texture2D" uid="uid://bopds2o2mwuuh" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0010.png" id="11_lb1t4"]
+[ext_resource type="Texture2D" uid="uid://web0bnc0cuic" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0011.png" id="12_ox4x8"]
+[ext_resource type="Texture2D" uid="uid://ds6nlm1q0hfsj" path="res://scenes/game/entities/characters/wizard/fireball/12.png" id="12_v6kt1"]
+[ext_resource type="Texture2D" uid="uid://bev0a0o7k0kbe" path="res://scenes/game/entities/characters/wizard/fireball/13.png" id="13_8oa78"]
+[ext_resource type="Texture2D" uid="uid://b84nxjy4rh03a" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0012.png" id="13_fma37"]
+[ext_resource type="Texture2D" uid="uid://cuahv24o5pq8e" path="res://scenes/game/entities/characters/wizard/fireball/14.png" id="14_7obiq"]
+[ext_resource type="Texture2D" uid="uid://cgptxhe3tw2ue" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0013.png" id="14_46fia"]
+[ext_resource type="Texture2D" uid="uid://caugs3ea0oqvk" path="res://scenes/game/entities/characters/wizard/fireball/15.png" id="15_1a5wj"]
+[ext_resource type="Texture2D" uid="uid://cc1i7pr0n17qx" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0014.png" id="15_xcpuq"]
+[ext_resource type="Texture2D" uid="uid://d1e64tjeag8u1" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0015.png" id="16_0jyqp"]
+[ext_resource type="Texture2D" uid="uid://cdhghqkpuf835" path="res://scenes/game/entities/characters/wizard/fireball/16.png" id="16_vwh4n"]
+[ext_resource type="Texture2D" uid="uid://d1bmu6xee5yjt" path="res://scenes/game/entities/characters/wizard/fireball/17.png" id="17_i7k4f"]
+[ext_resource type="Texture2D" uid="uid://dllxfmbmqidy" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0016.png" id="17_xldnw"]
+[ext_resource type="Texture2D" uid="uid://7nxtnwd21248" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0017.png" id="18_aqorj"]
+[ext_resource type="Texture2D" uid="uid://bgs4qhq4bcorm" path="res://scenes/game/entities/characters/wizard/fireball/18.png" id="18_rjsn4"]
+[ext_resource type="Texture2D" uid="uid://c6ojj0bqbkudi" path="res://scenes/game/entities/characters/wizard/fireball/19.png" id="19_g3f1e"]
+[ext_resource type="Texture2D" uid="uid://yvq1og3xrpnt" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0018.png" id="19_sm70k"]
+[ext_resource type="Texture2D" uid="uid://cj7f0t0tql8oc" path="res://scenes/game/entities/characters/wizard/fireball/20.png" id="20_r4m7u"]
+[ext_resource type="Texture2D" uid="uid://cnboamt4qpkl2" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0019.png" id="20_vyy12"]
+[ext_resource type="Texture2D" uid="uid://c4gdp3r217c8d" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0020.png" id="21_1uvrc"]
+[ext_resource type="Texture2D" uid="uid://caun8tvomt40m" path="res://scenes/game/entities/characters/wizard/fireball/21.png" id="21_apjlu"]
+[ext_resource type="Texture2D" uid="uid://bur8i57n533v4" path="res://scenes/game/entities/characters/wizard/fireball/22.png" id="22_besxo"]
+[ext_resource type="Texture2D" uid="uid://b85xwkbeskt2t" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0021.png" id="22_makl3"]
+[ext_resource type="Texture2D" uid="uid://dcaujeh3kpk7w" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0022.png" id="23_dhnci"]
+[ext_resource type="Texture2D" uid="uid://pve3xyh1b74y" path="res://scenes/game/entities/characters/wizard/fireball/23.png" id="23_kr30e"]
+[ext_resource type="Texture2D" uid="uid://dru2j4p4pl31h" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0023.png" id="24_5a33y"]
+[ext_resource type="Texture2D" uid="uid://bvh34xeb8uwko" path="res://scenes/game/entities/characters/wizard/fireball/24.png" id="24_o7rmn"]
+[ext_resource type="Texture2D" uid="uid://bp3f4xkpodcio" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0024.png" id="25_70g1n"]
+[ext_resource type="Texture2D" uid="uid://5gi1qsnmxua1" path="res://scenes/game/entities/characters/wizard/fireball/25.png" id="25_bwnj0"]
+[ext_resource type="Texture2D" uid="uid://bbhr6gibhiq4h" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0025.png" id="26_m2cs8"]
+[ext_resource type="Texture2D" uid="uid://b0ojrducphcw2" path="res://scenes/game/entities/characters/wizard/fireball/26.png" id="26_o8cbm"]
+[ext_resource type="Texture2D" uid="uid://dh8unxwrj0ht0" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0026.png" id="27_hl3fo"]
+[ext_resource type="Texture2D" uid="uid://bhtlhbcn324rx" path="res://scenes/game/entities/characters/wizard/fireball/27.png" id="27_vc6nr"]
+[ext_resource type="Texture2D" uid="uid://blcom7vx5isfd" path="res://scenes/game/entities/characters/wizard/fireball/28.png" id="28_48lnm"]
+[ext_resource type="Texture2D" uid="uid://ongc4fq1l65l" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0027.png" id="28_dy1oc"]
+[ext_resource type="Texture2D" uid="uid://bkghig3iky8si" path="res://scenes/game/entities/characters/wizard/fireball/29.png" id="29_4wsis"]
+[ext_resource type="Texture2D" uid="uid://dtjht87b2flns" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0028.png" id="29_cqgtc"]
+[ext_resource type="Texture2D" uid="uid://dyhl6wrqmrk4m" path="res://scenes/game/entities/characters/wizard/fireball/30.png" id="30_f6bvy"]
+[ext_resource type="Texture2D" uid="uid://btrdanbrn3qks" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0029.png" id="30_xpl6c"]
+[ext_resource type="Texture2D" uid="uid://cc117hws0u1o7" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0030.png" id="31_uoki6"]
+[ext_resource type="Texture2D" uid="uid://h1wp3p8gol6v" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0031.png" id="32_n7yd4"]
+[ext_resource type="Texture2D" uid="uid://bfpig8ytdl5ms" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0032.png" id="33_ew31s"]
+[ext_resource type="Texture2D" uid="uid://dpk3vcl7ilfcr" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0033.png" id="34_m3s8e"]
+[ext_resource type="Texture2D" uid="uid://pgfkxqk48ghs" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0034.png" id="35_o3wpx"]
+[ext_resource type="Texture2D" uid="uid://do4olx1c2364" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0035.png" id="36_tkihu"]
+[ext_resource type="Texture2D" uid="uid://71ponk6nl3qq" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0036.png" id="37_x140k"]
+[ext_resource type="Texture2D" uid="uid://4u4ur8v16h7r" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0037.png" id="38_qv3ag"]
+[ext_resource type="Texture2D" uid="uid://0mu1d35cmbpc" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0038.png" id="39_na5rp"]
+[ext_resource type="Texture2D" uid="uid://83dphejsikit" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0039.png" id="40_sp0cx"]
+[ext_resource type="Texture2D" uid="uid://qap0yptej8ry" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0040.png" id="41_l7k0g"]
+[ext_resource type="Texture2D" uid="uid://cah4bqh8dk3wc" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0041.png" id="42_805f2"]
+[ext_resource type="Texture2D" uid="uid://q6li8mwi3n47" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0042.png" id="43_i7a3w"]
+[ext_resource type="Texture2D" uid="uid://6jy8nr21aj5f" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0043.png" id="44_jr8mj"]
+[ext_resource type="Texture2D" uid="uid://bv8h6h4m6hcse" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0044.png" id="45_6b4tj"]
+[ext_resource type="Texture2D" uid="uid://fwidhvdahsdj" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0045.png" id="46_h7f78"]
+[ext_resource type="Texture2D" uid="uid://db31x64kafwst" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0046.png" id="47_eq6v3"]
+[ext_resource type="Texture2D" uid="uid://dprgmdsjokhc5" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0047.png" id="48_n3doy"]
+[ext_resource type="Texture2D" uid="uid://c7wop5a663u3q" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0048.png" id="49_la6se"]
+[ext_resource type="Texture2D" uid="uid://df25gx52c1x6" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0049.png" id="50_qtp7m"]
+[ext_resource type="Texture2D" uid="uid://dewt75b2714ai" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0050.png" id="51_kceun"]
+[ext_resource type="Texture2D" uid="uid://dlnppre6n4qgb" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0051.png" id="52_p7f5r"]
+[ext_resource type="Texture2D" uid="uid://xhd1unb3fc24" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0052.png" id="53_b051y"]
+[ext_resource type="Texture2D" uid="uid://kk726bnp0vk8" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0053.png" id="54_aaxjs"]
+[ext_resource type="Texture2D" uid="uid://darr05yruwfu4" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0054.png" id="55_ams6a"]
+[ext_resource type="Texture2D" uid="uid://bdadomr3jak7v" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0055.png" id="56_ijfvs"]
+[ext_resource type="Texture2D" uid="uid://qq81lm6t4urp" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0056.png" id="57_wi5m6"]
+[ext_resource type="Texture2D" uid="uid://cvh0b540i0wdh" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0057.png" id="58_20181"]
+[ext_resource type="Texture2D" uid="uid://c7ya8s05ibtbq" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0058.png" id="59_ff7rf"]
+[ext_resource type="Texture2D" uid="uid://ck5ikntdrotqi" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0059.png" id="60_bfrwj"]
+[ext_resource type="Texture2D" uid="uid://drhkckab8tv6a" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0060.png" id="61_1drbh"]
+[ext_resource type="Texture2D" uid="uid://qx64pktiyuca" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0061.png" id="62_6u30b"]
+[ext_resource type="Texture2D" uid="uid://uhqhn8wavqg7" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0062.png" id="63_bx8tx"]
+[ext_resource type="Texture2D" uid="uid://bl74euo255pxs" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0063.png" id="64_7b478"]
+[ext_resource type="Texture2D" uid="uid://b6wayfkctw5lk" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0064.png" id="65_l51ou"]
+[ext_resource type="Texture2D" uid="uid://dap3lis31yl2y" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0065.png" id="66_l0wxr"]
+[ext_resource type="Texture2D" uid="uid://bp6nsfgeae0e7" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0066.png" id="67_40kts"]
+[ext_resource type="Texture2D" uid="uid://ccgenvb8jpure" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0067.png" id="68_tflsb"]
+[ext_resource type="Texture2D" uid="uid://ipm3ccm54tsf" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0068.png" id="69_qoxyg"]
+[ext_resource type="Texture2D" uid="uid://c0hcwaborbq1r" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0069.png" id="70_5pg6c"]
+[ext_resource type="Texture2D" uid="uid://d1yyotbt851ou" path="res://scenes/game/entities/characters/wizard/fireball/wills_pixel_explosions_sample/round_explosion/PNG/frame0070.png" id="71_0s44s"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4woa4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nk32o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yhy85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oi6v1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j5vlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r1tus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_t8yxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fciwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_84b02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5il50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lb1t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ox4x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fma37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_46fia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xcpuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0jyqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xldnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_aqorj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_sm70k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_vyy12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1uvrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_makl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_dhnci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5a33y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_70g1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_m2cs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hl3fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_dy1oc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_cqgtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xpl6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_uoki6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_n7yd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ew31s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_m3s8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_o3wpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_tkihu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_x140k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_qv3ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_na5rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_sp0cx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_l7k0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_805f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_i7a3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_jr8mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_6b4tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_h7f78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_eq6v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_n3doy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_la6se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_qtp7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_kceun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_p7f5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_b051y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_aaxjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_ams6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_ijfvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_wi5m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_20181")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ff7rf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_bfrwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_1drbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_6u30b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_bx8tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_7b478")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_l51ou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_l0wxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_40kts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_tflsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_qoxyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_5pg6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_0s44s")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_x0yaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uxo7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_koe1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e64vj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6b5cc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_73rvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uk4cb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fs6jj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hp6sm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ecb18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jabnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v6kt1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8oa78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7obiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1a5wj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vwh4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_i7k4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rjsn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g3f1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_r4m7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_apjlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_besxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_kr30e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_o7rmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_bwnj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_o8cbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vc6nr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_48lnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_4wsis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_f6bvy")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

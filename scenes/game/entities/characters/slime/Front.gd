@@ -1,6 +1,5 @@
-extends Area2D
+extends HitBox
 
-@onready var enemy = owner as Enemy
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,7 +9,4 @@ func _ready():
 func _process(delta):
 	pass
 
-func hit():
-	enemy.take_hit()
-	$"../../Label".set_text("It hurt man, my face...")
 
