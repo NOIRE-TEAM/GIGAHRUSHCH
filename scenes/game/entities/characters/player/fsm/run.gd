@@ -7,7 +7,10 @@ func enter(_msg: Dictionary = {}):
 func inner_physics_process(delta):
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
-	#
+	
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+	
 	if Input.is_action_just_pressed("ui_attack"):
 		state_machine.change_to("Attack")
 		

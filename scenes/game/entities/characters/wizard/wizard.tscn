@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnu8687sm7nyw"]
+[gd_scene load_steps=6 format=3 uid="uid://cnu8687sm7nyw"]
 
 [ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/Wizard.gd" id="1_tqqiq"]
 [ext_resource type="SpriteFrames" uid="uid://bujc36wbl8l4s" path="res://scenes/game/entities/characters/wizard/new_sprite_frames.tres" id="2_8jjaw"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/TakeHitArea.gd" id="3_dj8np"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukcw0"]
 height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkrac"]
+radius = 16.0
+height = 50.0
 
 [node name="Wizard" type="CharacterBody2D"]
 collision_layer = 4
@@ -13,8 +18,9 @@ script = ExtResource("1_tqqiq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -27)
 sprite_frames = ExtResource("2_8jjaw")
-animation = &"walk"
-frame_progress = 0.979366
+animation = &"take_hit"
+frame = 4
+frame_progress = 1.0
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -50,6 +56,17 @@ position = Vector2(22, -21)
 [node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="HitBoxes" type="Node2D" parent="."]
+
+[node name="TakeHitArea" type="Area2D" parent="HitBoxes"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_dj8np")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/TakeHitArea"]
+shape = SubResource("CapsuleShape2D_rkrac")
+debug_color = Color(0.854902, 0.701961, 0, 0.419608)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HitZones/WatchZone" to="." method="_on_watch_zone_body_entered"]

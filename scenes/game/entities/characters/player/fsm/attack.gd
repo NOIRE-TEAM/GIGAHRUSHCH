@@ -19,6 +19,9 @@ func inner_physics_process(_delta):
 	
 	player.animation.play("attack")
 
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+
 	if player.animation.get_frame() == 2:
 		player.attack_2_zone.set_monitoring(true)
 	elif player.animation.get_frame() == 8:

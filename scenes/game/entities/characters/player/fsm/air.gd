@@ -10,12 +10,14 @@ func inner_physics_process(delta):
 	
 	if player.velocity.y <0:
 		player.animation.play("jump")
-	elif player.velocity.y ==0:
-		player.animation.play("jump_to_fall")
-	else:
+	elif player.velocity.y > 0:
 		player.animation.play("fall")
+
 	
 	player.velocity.y += player.gravity * delta
+	
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
 	
 	var direction = Input.get_axis("ui_left", "ui_right")
 	$"../../Control/L_direction".set_text(str(direction));

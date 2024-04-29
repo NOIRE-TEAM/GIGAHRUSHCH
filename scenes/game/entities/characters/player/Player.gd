@@ -13,8 +13,9 @@ signal u_turn
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var hp: int
+var hp = 100
 var giga_class: String
+var get_hitted = false
 
 func change_parametrs_hp(health: int):
 	hp = health;
@@ -25,6 +26,10 @@ func transform_to_string() -> String:
 	stroke += "hp" + str(hp) + "$" + "giga_class" + "$" + giga_class
 	queue_free()
 	return stroke
+
+func hitted(value:):
+	hp -= value
+	get_hitted = true
 
 @onready var animation = $AnimatedSprite2D
 #@onready var zones = $Zones

@@ -17,7 +17,7 @@ var one_fireball_instance_bool = false
 var direction
 var body_exited = false
 var FireBall = preload("res://scenes/game/entities/characters/wizard/fire_ball.tscn")
-
+var Hp = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -39,6 +39,7 @@ func _physics_process(delta):
 			if not is_on_floor():
 				current_state = states.Walk
 			animation.play("idle")
+			
 		states.Walk:
 			$Label2.set_text(str(direction))
 			animation.play("walk")
@@ -48,7 +49,7 @@ func _physics_process(delta):
 				velocity.x = direction * SPEED
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
-			print(muzzle.get_position())	
+
 			if direction > 0:
 				animation.set_flip_h(false)
 				muzzle.position.x = abs(muzzle.position.x)
@@ -57,21 +58,34 @@ func _physics_process(delta):
 				animation.set_flip_h(true)
 				muzzle.position.x = -muzzle.position.x
 				attack_zone.set_scale(Vector2(-1,1))
+				
 		states.Attack:
-			velocity.x = 0;
-			animation.play("attack")
-			if animation.get_frame() == 8 and !one_fireball_instance_bool:
-				one_fireball_instance_bool = true
-				attack_char(_body)
+			if _body != null:
+				velocity.x = 0;
+				animation.play("attack")
+				if animation.get_frame() == 8 and !one_fireball_instance_bool:
+					one_fireball_instance_bool = true
+					attack_char(_body)
+				
+		states.GetHit:
+			print("i am hitted")
+			animation.play("take_hit")
+			if Hp <= 0:
+				current_state = states.Death
+			
+		states.Death:
+			animation.play("death")
+			
 	$Label.set_text(states.keys()[current_state])			
 	move_and_slide()
 
 func attack_char(body):
-	print("I see you %s" % body.name)
-	var fireball = FireBall.instantiate()
-	fireball.set_position(muzzle.get_global_position())
-	fireball.set_target(body)
-	get_parent().add_child(fireball)
+	if body != null:
+		print("I see you %s" % body.name)
+		var fireball = FireBall.instantiate()
+		fireball.set_position(muzzle.get_global_position())
+		fireball.set_target(body)
+		get_parent().add_child(fireball)
 
 func _on_watch_zone_body_entered(body):
 	body_exited = false
@@ -79,6 +93,8 @@ func _on_watch_zone_body_entered(body):
 	_body = body
 	
 func _on_animated_sprite_2d_animation_finished():
+	if current_state == states.Death:
+		queue_free()
 	one_fireball_instance_bool = false
 	if body_exited:
 		current_state = states.Idle
@@ -96,7 +112,10 @@ func _on_walk_timer_timeout():
 	elif current_state == states.Idle:
 		current_state = states.Walk
 	
-
+func take_hit(value:):
+	print("Wizard take hit by %s" % value)
+	Hp -= value;
+	current_state = states.GetHit
 
 func _on_watch_zone_body_exited(body):
 	body_exited = true;

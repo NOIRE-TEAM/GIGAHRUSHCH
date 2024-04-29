@@ -18,9 +18,12 @@ func inner_physics_process(_delta):
 	
 	player.animation.play("attack#2")
 
-	if player.animation.get_frame() == 2:
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+
+	if player.animation.get_frame() == 5:
 		player.attack_2_zone.set_monitoring(true)
-	elif player.animation.get_frame() == 4:
+	elif player.animation.get_frame() == 7:
 		player.attack_2_zone.set_monitoring(false)
 
 	player.velocity.x = move_toward(player.velocity.x, 0, player.ATTACK_INERTION)
