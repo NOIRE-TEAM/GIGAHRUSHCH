@@ -13,11 +13,12 @@ enum states {
 
 var current_state = states.Walk
 var _body
-var one_fireball_instance_bool = false
+var one_fireball_instance_bool = false # для того, чтобы выпускался только 1 фаэрбол
 var direction
-var body_exited = false
+var body_exited = false # вышел ли игрок из зоны поражения
 var FireBall = preload("res://scenes/game/entities/characters/wizard/fire_ball.tscn")
 var Hp = 100
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,6 +32,8 @@ func _ready():
 @onready var animation = $AnimatedSprite2D
 @onready var muzzle = $Mazzle
 @onready var attack_zone = $HitZones/WatchZone
+@onready var walk_timer = $WalkTimer
+@onready var take_hit_area = $HitBoxes/TakeHitArea
 
 func _physics_process(delta):
 	match current_state:
@@ -68,12 +71,14 @@ func _physics_process(delta):
 					attack_char(_body)
 				
 		states.GetHit:
-			print("i am hitted")
+			attack_zone.set_monitoring(false)
 			animation.play("take_hit")
 			if Hp <= 0:
 				current_state = states.Death
 			
 		states.Death:
+			attack_zone.set_monitoring(false)
+			take_hit_area.set_monitorable(false)
 			animation.play("death")
 			
 	$Label.set_text(states.keys()[current_state])			
@@ -81,6 +86,7 @@ func _physics_process(delta):
 
 func attack_char(body):
 	if body != null:
+		walk_timer.stop();
 		print("I see you %s" % body.name)
 		var fireball = FireBall.instantiate()
 		fireball.set_position(muzzle.get_global_position())
@@ -95,14 +101,19 @@ func _on_watch_zone_body_entered(body):
 func _on_animated_sprite_2d_animation_finished():
 	if current_state == states.Death:
 		queue_free()
+	if current_state == states.GetHit:
+		attack_zone.set_monitoring(true)
+		current_state = states.Idle
 	one_fireball_instance_bool = false
 	if body_exited:
+		walk_timer.start()
 		current_state = states.Idle
 	else:
 		animation.play("attack")
 
 
 func _on_walk_timer_timeout():
+	print("Timer is out")
 	if current_state == states.Walk:
 		current_state = states.Idle
 		if direction >= 0:
@@ -114,6 +125,7 @@ func _on_walk_timer_timeout():
 	
 func take_hit(value:):
 	print("Wizard take hit by %s" % value)
+	
 	Hp -= value;
 	current_state = states.GetHit
 

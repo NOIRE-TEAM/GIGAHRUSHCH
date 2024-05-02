@@ -11,13 +11,14 @@ var attack_power = 35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	already_hit = false
+	look_at(target.get_position())
 	animation.play("move")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	if !is_explode && target:
-		look_at(target.get_position())
+	if !is_explode && target != null:
+		
 		position += transform.x * speed  * delta
 
 func set_target(_body):

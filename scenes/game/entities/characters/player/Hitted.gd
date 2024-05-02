@@ -3,6 +3,7 @@ extends StatePlayer
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
+	player.velocity.x = -50
 	$"../../Control/L_state".set_text(name)
 	pass
 
@@ -12,8 +13,9 @@ func inner_physics_process(_delta):
 	if player.hp <= 0:
 		player.queue_free()
 	player.get_hitted = false;
-	print("Player hitted")
+	player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
 	#TODO: IDLE
+	player.move_and_slide()
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 		

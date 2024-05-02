@@ -48,7 +48,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/Attack#2"]
-polygon = PackedVector2Array(4, -13, 5, 3, 7, 21, 7, 21, -1, 31, 13, 24, 20, 15, 25, 6, 23, -6, 18, -11)
+polygon = PackedVector2Array(4, -13, 5, 3, 7, 21, 7, 21, 1, 29, 18, 30, 36, 26, 44, 2, 25, -10, 18, -12)
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource("3_5wey7")

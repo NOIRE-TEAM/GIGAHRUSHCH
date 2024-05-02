@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://2dulyhghfums"]
+[gd_scene load_steps=8 format=3 uid="uid://2dulyhghfums"]
 
 [ext_resource type="PackedScene" uid="uid://dlov8br4qtnw5" path="res://scenes/game/entities/characters/slime/slime.tscn" id="1_fno4b"]
 [ext_resource type="Script" path="res://main_world.gd" id="1_l6yq4"]
 [ext_resource type="PackedScene" uid="uid://cnu8687sm7nyw" path="res://scenes/game/entities/characters/wizard/wizard.tscn" id="2_yp1uv"]
 [ext_resource type="PackedScene" uid="uid://co7l3sik6f6yn" path="res://scenes/game/entities/characters/player/main_char.tscn" id="4_pp4j1"]
+[ext_resource type="PackedScene" uid="uid://0r51c4hb1hn4" path="res://scenes/game/entities/characters/warrior/warrior.tscn" id="5_uadln"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6c88i"]
 
@@ -39,9 +40,12 @@ offset_right = 756.0
 offset_bottom = 78.0
 
 [node name="Wizard" parent="." instance=ExtResource("2_yp1uv")]
-position = Vector2(263, 4)
+position = Vector2(267, 4)
 
 [node name="Slime" parent="." instance=ExtResource("1_fno4b")]
 position = Vector2(433, 15)
 
 [node name="Player" parent="." instance=ExtResource("4_pp4j1")]
+
+[node name="Warrior" parent="." instance=ExtResource("5_uadln")]
+position = Vector2(627, 55)

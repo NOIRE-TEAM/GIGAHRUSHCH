@@ -4,6 +4,7 @@ var already_hit: bool
 var power_modifer:int = 0
 
 func enter(_msg: Dictionary={}):
+	player.animation.set_speed_scale(4)
 	already_hit = false
 	$"../../Control/L_state".set_text(name)
 	if player.animation.is_flipped_h():
@@ -47,6 +48,6 @@ func _on_attack_2_area_entered(area):
 	if not already_hit:
 		print(area.owner.name)
 		if area.has_method("hit"):
-			area.hit(player.ATTACK_2_POWER + power_modifer)
+			area.hit(player.ATTACK_2_POWER + power_modifer, player.position.x)
 		already_hit = true
 	
