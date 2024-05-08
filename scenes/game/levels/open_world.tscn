@@ -6,11 +6,11 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inb4r"]
 texture = ExtResource("2_xtosk")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(12, 12)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -6, 6, -6, 6, 6, -6, 6)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -58,7 +58,7 @@ texture_region_size = Vector2i(32, 32)
 3:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_bwnml"]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(12, 12)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_inb4r")
 
@@ -72,4 +72,4 @@ script = ExtResource("1_7vo16")
 [node name="TileMap" type="TileMap" parent="WorldSaver"]
 tile_set = SubResource("TileSet_bwnml")
 format = 2
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 65536, 0, 0)
+layer_0/tile_data = PackedInt32Array(262143, 0, 0, 196608, 0, 0)
