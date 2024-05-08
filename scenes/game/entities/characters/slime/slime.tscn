@@ -57,22 +57,22 @@ a = Vector2(-7, -7)
 b = Vector2(2, 11)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e3atv"]
-a = Vector2(4, -8)
-b = Vector2(-13, 10)
+a = Vector2(3, -9)
+b = Vector2(-12, 10)
 
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_qq6bl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6.5, -5.75)
+position = Vector2(-2, -5)
 scale = Vector2(1.40625, 1.46)
 sprite_frames = SubResource("SpriteFrames_v4g0c")
 animation = &"idle"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6.5, 1.5)
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_tq10s")
 
 [node name="HitBoxes" type="Node2D" parent="."]
@@ -84,7 +84,7 @@ monitoring = false
 script = ExtResource("6_rmvqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Front"]
-position = Vector2(24, -1)
+position = Vector2(15, -1)
 shape = SubResource("SegmentShape2D_4nngy")
 debug_color = Color(0.0705882, 0.894118, 0, 0.419608)
 
@@ -95,15 +95,25 @@ monitoring = false
 script = ExtResource("7_07snx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Back"]
+position = Vector2(-9, 0)
 shape = SubResource("SegmentShape2D_e3atv")
 debug_color = Color(0.701961, 0.0509804, 0.286275, 0.419608)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -14.0
-offset_top = -25.0
-offset_right = 26.0
-offset_bottom = -2.0
+offset_left = -15.0
+offset_top = -34.0
+offset_right = 33.0
+offset_bottom = -11.0
 theme_override_font_sizes/font_size = 15
+text = "Label1"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -25.0
+theme_override_font_sizes/font_size = 15
+text = "Label2"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

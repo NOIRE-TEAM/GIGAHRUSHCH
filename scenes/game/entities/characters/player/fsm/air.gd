@@ -8,12 +8,12 @@ func enter(msg: Dictionary = {}):
 	
 func inner_physics_process(delta):
 	
-	#if player.velocity.y <0:
-		#player.animation.play("jump")
-	#elif player.velocity.y ==0:
-		#player.animation.play("jump_to_fall")
-	#else:
-		#player.animation.play("fall")
+	if player.velocity.y <0:
+		player.animation.play("jump")
+	elif player.velocity.y ==0:
+		player.animation.play("jump_to_fall")
+	else:
+		player.animation.play("fall")
 	
 	player.velocity.y += player.gravity * delta
 	
@@ -24,10 +24,12 @@ func inner_physics_process(delta):
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.SPEED)
 
-	if direction < 0:
+	if direction < 0 and not player.animation.is_flipped_h():
 		player.animation.set_flip_h(true)
-	elif direction > 0:
+		player.u_turn.emit("left")
+	elif direction > 0 and player.animation.is_flipped_h():
 		player.animation.set_flip_h(false)
+		player.u_turn.emit("right")
 
 	player.move_and_slide()
 	

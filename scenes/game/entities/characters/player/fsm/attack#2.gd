@@ -1,6 +1,7 @@
 extends StatePlayer
 
 var already_hit: bool
+var power_modifer:int = 0
 
 func enter(_msg: Dictionary={}):
 	already_hit = false
@@ -39,9 +40,10 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func _on_attack_2_area_entered(area):
+	power_modifer = abs(int(player.velocity.x))
 	if not already_hit:
 		print(area.owner.name)
 		if area.has_method("hit"):
-			area.hit()
+			area.hit(player.ATTACK_2_POWER + power_modifer)
 		already_hit = true
 	

@@ -1,7 +1,4 @@
-extends Area2D
-
-
-@onready var enemy = owner as Enemy
+extends HitBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +9,14 @@ func _ready():
 func _process(delta):
 	pass
 
-func hit():
-	enemy.take_hit()
-	$"../../Label".set_text("My ass... It's because I'am slime yeah?")
-
+func hit(value: int = 0):
+	if value > 10:
+		value -= 10
+	enemy.take_hit(value)
+	$"../../Label".set_text("It hurt man, my ass")
+	if enemy.animation.is_flipped_h():
+		enemy.animation.set_flip_h(false)
+		enemy.hitboxes.set_scale(Vector2(1, 1))
+	else:
+		enemy.animation.set_flip_h(true)
+		enemy.hitboxes.set_scale(Vector2(-1, 1))
