@@ -30,13 +30,13 @@ func _ready():
 	placing = get_child(1)
 	self.start("example", placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self.set_view_center(player.position.x, player.position.y)
 	var unload_xy: PackedInt64Array = self.which_to_unload()
 	while !unload_xy.is_empty():
-		var payload = unload_xy.to_byte_array()
-		payload.append_array(from_tilemap(unload_xy[0], unload_xy[1]))
-		self.unload(payload)
+		var payload_unl_xy = unload_xy.to_byte_array()
+		payload_unl_xy.append_array(from_tilemap(unload_xy[0], unload_xy[1]))
+		self.unload(payload_unl_xy)
 		unload_xy = self.which_to_unload()
 	var payload: PackedByteArray = self.load_another_one()
 	while !payload.is_empty():
