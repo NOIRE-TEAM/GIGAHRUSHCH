@@ -40,6 +40,6 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_hitboxe_body_entered(body):
 	if not already_hit:
 		if body.has_method("hitted"):
-			body.hitted(attack_power)
+			body.hitted(attack_power, position.x)
 		already_hit = true
 	explode()

@@ -13,8 +13,8 @@ func inner_physics_process(delta):
 	elif player.velocity.y > 0:
 		player.animation.play("fall")
 
-	
-	player.velocity.y += player.gravity * delta
+	if player.velocity.y < 500:
+		player.velocity.y += player.gravity * delta
 	
 	if player.get_hitted:
 		state_machine.change_to("Hitted")

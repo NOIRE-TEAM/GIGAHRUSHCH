@@ -3,7 +3,10 @@ extends StatePlayer
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
-	player.velocity.x = -50
+	if player.enemy_coordinates > player.position.x:
+		player.velocity.x = -150
+	else:
+		player.velocity.x = 150
 	$"../../Control/L_state".set_text(name)
 	pass
 
@@ -36,4 +39,7 @@ func inner_physics_process(_delta):
 		pass
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") :
 			state_machine.change_to("Run")
+	
+	if player.velocity.x == 0:
+		state_machine.change_to("Idle")
 

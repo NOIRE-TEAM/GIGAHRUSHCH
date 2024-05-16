@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hp = 100
 var giga_class: String
 var get_hitted = false
+var enemy_coordinates = 0
 
 func change_parametrs_hp(health: int):
 	hp = health;
@@ -27,9 +28,11 @@ func transform_to_string() -> String:
 	queue_free()
 	return stroke
 
-func hitted(value:):
+func hitted(value:int, coordinates:float):
+	print("Player is hitted")
 	hp -= value
 	get_hitted = true
+	enemy_coordinates = coordinates
 
 @onready var animation = $AnimatedSprite2D
 #@onready var zones = $Zones
