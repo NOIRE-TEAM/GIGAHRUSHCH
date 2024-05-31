@@ -19,6 +19,9 @@ func inner_physics_process(_delta):
 	
 	player.animation.play("attack")
 
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+
 	if player.animation.get_frame() == 2:
 		player.attack_2_zone.set_monitoring(true)
 	elif player.animation.get_frame() == 8:
@@ -44,6 +47,6 @@ func _on_attack_2_area_entered(area):
 	if not already_hit:
 		print(area.owner.name)
 		if area.has_method("hit"):
-			area.hit()
+			area.hit(50, player.position.x)
 		already_hit = true
 	

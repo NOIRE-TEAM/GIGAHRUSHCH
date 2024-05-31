@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://0r51c4hb1hn4"]
+
+[ext_resource type="Script" path="res://scenes/game/entities/characters/warrior/warrior.gd" id="1_2fhex"]
+[ext_resource type="SpriteFrames" uid="uid://b35beudoh2wue" path="res://scenes/game/entities/characters/warrior/warrior_animations.tres" id="1_udmrn"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/warrior/takeHitWarrior.gd" id="3_gymtf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fntu"]
+radius = 13.0
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wibek"]
+size = Vector2(241, 51)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1paua"]
+radius = 13.0
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wv15"]
+size = Vector2(20, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hejbx"]
+size = Vector2(20, 5)
+
+[node name="Warrior" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_2fhex")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -65.0
+offset_right = 22.0
+offset_bottom = -42.0
+text = "Label"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -88.0
+offset_right = 28.0
+offset_bottom = -65.0
+text = "Label2"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -111.0
+offset_right = 28.0
+offset_bottom = -88.0
+text = "Label3"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_udmrn")
+animation = &"take_hit"
+frame = 4
+frame_progress = 1.0
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_1fntu")
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="WatchZone" type="Area2D" parent="Zones"]
+position = Vector2(0, 8)
+collision_layer = 8
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/WatchZone"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_wibek")
+debug_color = Color(0.670588, 0.509804, 0, 0.419608)
+
+[node name="AttackZone" type="Area2D" parent="Zones"]
+collision_layer = 8
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/AttackZone"]
+polygon = PackedVector2Array(7, 27, 21, 25, 39, 13, 40, -7, 31, -20, 16, -28, -1, -29, -12, -29, -1, -14, 6, -2, 6, 17, -1, 25)
+
+[node name="DamageDealZone" type="Area2D" parent="Zones"]
+collision_layer = 8
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/DamageDealZone"]
+polygon = PackedVector2Array(-12, -29, 6, -2, 6, 16, -1, 24, 7, 26, 21, 25, 41, 13, 40, -9, 32, -22, 16, -28)
+
+[node name="TakeHitZone" type="Area2D" parent="Zones"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_gymtf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/TakeHitZone"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_1paua")
+debug_color = Color(0, 0.552941, 0.909804, 0.419608)
+
+[node name="NotFallZoneRight" type="Area2D" parent="Zones"]
+collision_layer = 8
+monitorable = false
+
+[node name="Right" type="CollisionShape2D" parent="Zones/NotFallZoneRight"]
+position = Vector2(21, 26)
+shape = SubResource("RectangleShape2D_7wv15")
+
+[node name="NotFallZoneLeft" type="Area2D" parent="Zones"]
+collision_layer = 8
+monitorable = false
+
+[node name="Left" type="CollisionShape2D" parent="Zones/NotFallZoneLeft"]
+position = Vector2(-21, 26)
+shape = SubResource("RectangleShape2D_hejbx")
+
+[node name="TimeUntilRun" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Zones/WatchZone" to="." method="_on_watch_zone_body_entered"]
+[connection signal="body_exited" from="Zones/WatchZone" to="." method="_on_watch_zone_body_exited"]
+[connection signal="body_entered" from="Zones/AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="Zones/AttackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="body_entered" from="Zones/DamageDealZone" to="." method="_on_damage_deal_zone_body_entered"]
+[connection signal="body_entered" from="Zones/NotFallZoneRight" to="." method="_on_not_fall_zone_right_body_entered"]
+[connection signal="body_exited" from="Zones/NotFallZoneRight" to="." method="_on_not_fall_zone_right_body_exited"]
+[connection signal="body_entered" from="Zones/NotFallZoneLeft" to="." method="_on_not_fall_zone_left_body_entered"]
+[connection signal="body_exited" from="Zones/NotFallZoneLeft" to="." method="_on_not_fall_zone_left_body_exited"]
+[connection signal="timeout" from="TimeUntilRun" to="." method="_on_time_until_run_timeout"]

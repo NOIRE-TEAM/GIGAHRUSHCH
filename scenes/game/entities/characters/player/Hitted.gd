@@ -1,13 +1,27 @@
 extends StatePlayer
 
+
+# Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
-	player.velocity = Vector2.ZERO
+	if player.enemy_coordinates > player.position.x:
+		player.velocity.x = -150
+	else:
+		player.velocity.x = 150
 	$"../../Control/L_state".set_text(name)
-	
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func inner_physics_process(_delta):
+	if player.hp <= 0:
+		player.queue_free()
+	player.get_hitted = false;
+	player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
+	#TODO: IDLE
+	player.move_and_slide()
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
-		#
+		
 	if player.get_hitted:
 		state_machine.change_to("Hitted")
 		
@@ -26,4 +40,6 @@ func inner_physics_process(_delta):
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") :
 			state_machine.change_to("Run")
 	
-	player.animation.play("idle")
+	if player.velocity.x == 0:
+		state_machine.change_to("Idle")
+

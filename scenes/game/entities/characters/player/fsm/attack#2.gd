@@ -4,6 +4,7 @@ var already_hit: bool
 var power_modifer:int = 0
 
 func enter(_msg: Dictionary={}):
+	player.animation.set_speed_scale(4)
 	already_hit = false
 	$"../../Control/L_state".set_text(name)
 	if player.animation.is_flipped_h():
@@ -18,9 +19,12 @@ func inner_physics_process(_delta):
 	
 	player.animation.play("attack#2")
 
-	if player.animation.get_frame() == 2:
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+
+	if player.animation.get_frame() == 5:
 		player.attack_2_zone.set_monitoring(true)
-	elif player.animation.get_frame() == 4:
+	elif player.animation.get_frame() == 7:
 		player.attack_2_zone.set_monitoring(false)
 
 	player.velocity.x = move_toward(player.velocity.x, 0, player.ATTACK_INERTION)
@@ -44,6 +48,6 @@ func _on_attack_2_area_entered(area):
 	if not already_hit:
 		print(area.owner.name)
 		if area.has_method("hit"):
-			area.hit(player.ATTACK_2_POWER + power_modifer)
+			area.hit(player.ATTACK_2_POWER + power_modifer, player.position.x)
 		already_hit = true
 	

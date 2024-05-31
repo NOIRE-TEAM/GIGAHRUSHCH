@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	pass
 
-func Spawn(param_stroke: String):
+func SpawnPlayer(param_stroke: String):
 	var spawned_scene = load("res://scenes/game/entities/characters/player/main_char.tscn")
 	var player = spawned_scene.instantiate()
 	var param:Array = param_stroke.to_lower().split("$", false)
@@ -23,10 +23,21 @@ func Spawn(param_stroke: String):
 	
 	add_child(player)
 
+func SpawnMage(param_stroke: String):
+	var spawned_scene = load("res://scenes/game/entities/characters/wizard/wizard.tscn")
+	var mage = spawned_scene.instantiate()
+	add_child(mage)
+	
+func SpawnWarrior(param_stroke: String):
+	var spawned_scene = load("res://scenes/game/entities/characters/warrior/warrior.tscn")
+	var warrior = spawned_scene.instantiate()
+	add_child(warrior)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#if (Input.is_action_just_pressed("ui_accept")):
-		#Spawn("Hp$100$Super_name$plum")
+	if (Input.is_action_just_pressed("ui_accept")):
+		SpawnMage("Hp$100$Super_name$plum")
+		SpawnWarrior("Hp$100$Super_name$plum")
 	if (Input.is_action_just_pressed("ui_focus_next")):
 		if $Player.is_inside_tree():
 			var player = get_node("Player")
