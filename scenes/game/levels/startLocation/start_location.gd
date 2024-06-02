@@ -18,5 +18,4 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
-	print(body)
-	get_tree().change_scene_to_file("res://scenes/gui/menus/test_menu_scene.tscn")
+	get_tree().change_scene_to_file("res://scenes/gui/menus/open_world.tscn")
