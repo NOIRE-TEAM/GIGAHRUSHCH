@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xpsx6xq1a2s"]
+
+[ext_resource type="AudioStream" uid="uid://dl0x21uaf4es1" path="res://assets/audio/music/test_loop.ogg" id="1_dvryy"]
+[ext_resource type="PackedScene" uid="uid://xq1sdtfymtf7" path="res://scenes/gui/menus/pauseMenu/pause_menu.tscn" id="2_g64fu"]
+
+[sub_resource type="GDScript" id="GDScript_rquac"]
+script/source = "extends Node2D
+
+func _ready():
+	print(GlobalVariables.CurrentWorld)
+"
+
+[node name="TestScene" type="Node2D"]
+script = SubResource("GDScript_rquac")
+
+[node name="MusicBackground" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("1_dvryy")
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_g64fu")]

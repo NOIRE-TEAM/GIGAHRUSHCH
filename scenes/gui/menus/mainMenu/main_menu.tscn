@@ -1,0 +1,477 @@
+[gd_scene load_steps=8 format=3 uid="uid://diqfoemjhol6a"]
+
+[ext_resource type="PackedScene" uid="uid://db06x23v5lbbp" path="res://scenes/gui/menus/parallaxBackground/parallax_background.tscn" id="1_4ke34"]
+[ext_resource type="Script" path="res://scenes/gui/menus/mainMenu/main_menu.gd" id="1_ow5nf"]
+[ext_resource type="ButtonGroup" uid="uid://cx8ag3o05utul" path="res://scenes/gui/menus/mainMenu/saves_button_group.tres" id="2_t1wtj"]
+[ext_resource type="PackedScene" uid="uid://cqj2m3pknlj4y" path="res://scenes/gui/menus/mainMenu/volumeSlider/volume_slider.tscn" id="3_vxlst"]
+[ext_resource type="AudioStream" uid="uid://dl0x21uaf4es1" path="res://assets/audio/music/test_loop.ogg" id="5_xd61a"]
+[ext_resource type="AudioStream" uid="uid://d20kio2nl8a0n" path="res://assets/audio/sounds/gui/hover.mp3" id="6_3cx0s"]
+
+[sub_resource type="FontVariation" id="FontVariation_1e4sv"]
+spacing_glyph = 11
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ow5nf")
+button_group = ExtResource("2_t1wtj")
+
+[node name="Main" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -292.0
+offset_right = 207.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ChooseWorld" type="Button" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Играть"
+
+[node name="Options" type="Button" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Настройки"
+
+[node name="Exit" type="Button" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Выход"
+
+[node name="Label" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_top = -152.0
+offset_right = 307.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_1e4sv")
+theme_override_font_sizes/font_size = 90
+text = "ГИГАХРУЩ"
+
+[node name="Worlds" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -236.0
+offset_right = 360.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Worlds"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.486275)
+
+[node name="Close" type="Button" parent="Worlds"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "x"
+
+[node name="NewWorld" type="Control" parent="Worlds"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NewWorldTitle" type="Label" parent="Worlds/NewWorld"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 52.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 103.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Придумайте название мира
+"
+horizontal_alignment = 1
+
+[node name="NewWorldButtons" type="HBoxContainer" parent="Worlds/NewWorld"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 202.0
+offset_top = 194.5
+offset_right = 478.0
+offset_bottom = 237.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Create" type="Button" parent="Worlds/NewWorld/NewWorldButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Создать"
+
+[node name="Cancel" type="Button" parent="Worlds/NewWorld/NewWorldButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Отменить"
+
+[node name="TextEdit" type="TextEdit" parent="Worlds/NewWorld"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 92.0
+offset_top = 100.0
+offset_right = 588.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 23
+placeholder_text = "Напишите сюда название нового мира"
+
+[node name="WorldsChoose" type="Control" parent="Worlds"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Worlds/WorldsChoose"]
+layout_mode = 2
+offset_left = 219.5
+offset_top = 358.0
+offset_right = 500.5
+offset_bottom = 401.0
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Play" type="Button" parent="Worlds/WorldsChoose/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Запустить"
+
+[node name="Delete" type="Button" parent="Worlds/WorldsChoose/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Удалить"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Worlds/WorldsChoose"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 84.0
+offset_top = 108.0
+offset_right = 596.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Worlds/WorldsChoose/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Save1" type="Button" parent="Worlds/WorldsChoose/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 1"
+
+[node name="Save2" type="Button" parent="Worlds/WorldsChoose/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 2"
+
+[node name="Save3" type="Button" parent="Worlds/WorldsChoose/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 3"
+
+[node name="Save4" type="Button" parent="Worlds/WorldsChoose/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 4"
+
+[node name="NewWorld" type="Button" parent="Worlds/WorldsChoose/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Создать новый мир"
+
+[node name="Title" type="Label" parent="Worlds/WorldsChoose"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 48.0
+offset_right = 510.0
+offset_bottom = 103.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Выберите мир"
+
+[node name="Old" type="VBoxContainer" parent="Worlds/WorldsChoose"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 115.5
+offset_top = 51.0
+offset_right = 564.5
+offset_bottom = 381.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Worlds/WorldsChoose/Old"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Выберите мир"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Worlds/WorldsChoose/Old"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Worlds/WorldsChoose/Old/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Save1" type="Button" parent="Worlds/WorldsChoose/Old/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 1"
+
+[node name="Save2" type="Button" parent="Worlds/WorldsChoose/Old/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 2"
+
+[node name="Save3" type="Button" parent="Worlds/WorldsChoose/Old/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 3"
+
+[node name="Save4" type="Button" parent="Worlds/WorldsChoose/Old/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("2_t1wtj")
+text = "Мир 4"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Worlds/WorldsChoose/Old"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Play" type="Button" parent="Worlds/WorldsChoose/Old/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Запустить"
+
+[node name="Delete" type="Button" parent="Worlds/WorldsChoose/Old/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Удалить"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -236.0
+offset_right = 360.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.486275)
+
+[node name="CloseSettings" type="Button" parent="Settings"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "x"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -196.0
+offset_right = 225.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Настройки"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title3" type="Label" parent="Settings/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Звук"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Музыка"
+
+[node name="volume_slider" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_vxlst")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Эффекты"
+
+[node name="volume_slider" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_vxlst")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Title2" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Управление"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_4ke34")]
+
+[node name="MusicBackground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xd61a")
+autoplay = true
+bus = &"Music"
+
+[node name="HoverButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3cx0s")
+bus = &"SFX"
+
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/ChooseWorld" to="." method="_on_choose_world_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Worlds/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Worlds/NewWorld/NewWorldButtons/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Worlds/NewWorld/NewWorldButtons/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Worlds/WorldsChoose/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Worlds/WorldsChoose/ScrollContainer/VBoxContainer/NewWorld" to="." method="_on_new_world_pressed"]
+[connection signal="pressed" from="Worlds/WorldsChoose/Old/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Settings/CloseSettings" to="." method="_on_close_settings_mouse_entered"]
+[connection signal="pressed" from="Settings/CloseSettings" to="." method="_on_close_settings_pressed"]
