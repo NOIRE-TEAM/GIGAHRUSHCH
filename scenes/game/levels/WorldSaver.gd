@@ -1,7 +1,8 @@
 extends WorldSaver
 
 var placing
-var player
+var player:CharacterBody2D
+var monsters = []
 
 func to_tilemap(x: int, y: int, content: PackedByteArray):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
@@ -25,12 +26,37 @@ func from_tilemap(x: int, y: int):
 				ret.append(0)
 	return ret
 
+func SpawnMage(param_stroke: String):
+	var spawned_scene = load("res://scenes/game/entities/characters/wizard/wizard.tscn")
+	var mage = spawned_scene.instantiate()
+	add_child(mage)
+	
+func SpawnWarrior(param_stroke: String):
+	var spawned_scene = load("res://scenes/game/entities/characters/warrior/warrior.tscn")
+	var warrior = spawned_scene.instantiate()
+	add_child(warrior)
+
+func DeleteAllMonsters():
+	for monster in monsters:
+		if (player.get_position() - monster.get_position()).length() > 2*self.CHUNK_SIZE_X * placing.tile_set.tile_size.x:
+			monsters.erase(monster)
+			monster.queue_free()
+
+func add_monster(monster: CharacterBody2D):
+	monsters.append(monster)
+
 func _ready():
 	player = get_child(0)
 	placing = get_child(1)
+	add_monster($Wizard)
+	add_monster($Warrior)
 	self.start("example", placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
 
 func _physics_process(_delta):
+	#if (Input.is_action_just_pressed("ui_accept")):
+		#SpawnMage("Hp$100$Super_name$plum")
+		#SpawnWarrior("Hp$100$Super_name$plum")
+	DeleteAllMonsters()
 	self.set_view_center(player.position.x, player.position.y)
 	var unload_xy: PackedInt64Array = self.which_to_unload()
 	while !unload_xy.is_empty():
