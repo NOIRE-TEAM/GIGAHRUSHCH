@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr084yl8jacq3"]
+[gd_scene load_steps=9 format=3 uid="uid://dr084yl8jacq3"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/WorldSaver.gd" id="1_7vo16"]
 [ext_resource type="PackedScene" uid="uid://co7l3sik6f6yn" path="res://scenes/game/entities/characters/player/main_char.tscn" id="1_dbngu"]
 [ext_resource type="Texture2D" uid="uid://ck47hcv5jq0ev" path="res://icon.svg" id="2_xtosk"]
 [ext_resource type="PackedScene" uid="uid://0r51c4hb1hn4" path="res://scenes/game/entities/characters/warrior/warrior.tscn" id="2_y4uj4"]
 [ext_resource type="PackedScene" uid="uid://cnu8687sm7nyw" path="res://scenes/game/entities/characters/wizard/wizard.tscn" id="3_sna8q"]
+[ext_resource type="PackedScene" uid="uid://xq1sdtfymtf7" path="res://scenes/gui/menus/pauseMenu/pause_menu.tscn" id="6_2m1g0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inb4r"]
 texture = ExtResource("2_xtosk")
@@ -80,3 +81,7 @@ position = Vector2(-108, 6)
 
 [node name="Warrior" parent="WorldSaver" instance=ExtResource("2_y4uj4")]
 position = Vector2(103, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_2m1g0")]
