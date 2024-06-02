@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0r51c4hb1hn4"]
+[gd_scene load_steps=7 format=3 uid="uid://0r51c4hb1hn4"]
 
 [ext_resource type="Script" path="res://scenes/game/entities/characters/warrior/warrior.gd" id="1_2fhex"]
 [ext_resource type="SpriteFrames" uid="uid://b35beudoh2wue" path="res://scenes/game/entities/characters/warrior/warrior_animations.tres" id="1_udmrn"]
@@ -14,12 +14,6 @@ size = Vector2(241, 51)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1paua"]
 radius = 13.0
 height = 36.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wv15"]
-size = Vector2(20, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hejbx"]
-size = Vector2(20, 5)
 
 [node name="Warrior" type="CharacterBody2D"]
 collision_layer = 4
@@ -101,22 +95,6 @@ position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_1paua")
 debug_color = Color(0, 0.552941, 0.909804, 0.419608)
 
-[node name="NotFallZoneRight" type="Area2D" parent="Zones"]
-collision_layer = 8
-monitorable = false
-
-[node name="Right" type="CollisionShape2D" parent="Zones/NotFallZoneRight"]
-position = Vector2(21, 26)
-shape = SubResource("RectangleShape2D_7wv15")
-
-[node name="NotFallZoneLeft" type="Area2D" parent="Zones"]
-collision_layer = 8
-monitorable = false
-
-[node name="Left" type="CollisionShape2D" parent="Zones/NotFallZoneLeft"]
-position = Vector2(-21, 26)
-shape = SubResource("RectangleShape2D_hejbx")
-
 [node name="TimeUntilRun" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
@@ -127,8 +105,4 @@ autostart = true
 [connection signal="body_entered" from="Zones/AttackZone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="Zones/AttackZone" to="." method="_on_attack_zone_body_exited"]
 [connection signal="body_entered" from="Zones/DamageDealZone" to="." method="_on_damage_deal_zone_body_entered"]
-[connection signal="body_entered" from="Zones/NotFallZoneRight" to="." method="_on_not_fall_zone_right_body_entered"]
-[connection signal="body_exited" from="Zones/NotFallZoneRight" to="." method="_on_not_fall_zone_right_body_exited"]
-[connection signal="body_entered" from="Zones/NotFallZoneLeft" to="." method="_on_not_fall_zone_left_body_entered"]
-[connection signal="body_exited" from="Zones/NotFallZoneLeft" to="." method="_on_not_fall_zone_left_body_exited"]
 [connection signal="timeout" from="TimeUntilRun" to="." method="_on_time_until_run_timeout"]
