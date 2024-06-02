@@ -52,7 +52,7 @@ func _ready():
 	placing = get_child(1)
 	add_monster($Wizard)
 	add_monster($Warrior)
-	self.start("example", placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
+	self.start(GlobalVariables.CurrentWorld, placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
 	#SpawnMage(Vector2(player.position))
 	#SpawnWarrior(Vector2(player.position))
 
