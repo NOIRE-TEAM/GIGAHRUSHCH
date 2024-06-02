@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3 uid="uid://xq1sdtfymtf7"]
+
+[ext_resource type="PackedScene" uid="uid://cqj2m3pknlj4y" path="res://scenes/gui/menus/mainMenu/volumeSlider/volume_slider.tscn" id="1_1ln4e"]
+[ext_resource type="Script" path="res://scenes/gui/menus/pauseMenu/pause_menu.gd" id="1_s18s1"]
+[ext_resource type="AudioStream" uid="uid://d20kio2nl8a0n" path="res://assets/audio/sounds/gui/hover.mp3" id="2_jmkc1"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s18s1")
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -236.0
+offset_right = 360.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.486275)
+
+[node name="CloseSettings" type="Button" parent="Settings"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "x"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -196.0
+offset_right = 225.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Пауза"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title3" type="Label" parent="Settings/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Звук"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Музыка"
+
+[node name="volume_slider" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_1ln4e")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Эффекты"
+
+[node name="volume_slider" parent="Settings/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1_1ln4e")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Title2" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Управление"
+
+[node name="Button" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+text = "Главное меню"
+
+[node name="HoverButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jmkc1")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Settings/CloseSettings" to="." method="_on_close_settings_mouse_entered"]
+[connection signal="pressed" from="Settings/CloseSettings" to="." method="_on_close_settings_pressed"]
+[connection signal="pressed" from="Settings/VBoxContainer/Button" to="." method="_on_button_pressed"]
