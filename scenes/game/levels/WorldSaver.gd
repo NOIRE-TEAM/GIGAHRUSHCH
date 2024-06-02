@@ -26,14 +26,16 @@ func from_tilemap(x: int, y: int):
 				ret.append(0)
 	return ret
 
-func SpawnMage(param_stroke: String):
+func SpawnMage(pos: Vector2):
 	var spawned_scene = load("res://scenes/game/entities/characters/wizard/wizard.tscn")
 	var mage = spawned_scene.instantiate()
+	mage.set_position(pos)
 	add_child(mage)
 	
-func SpawnWarrior(param_stroke: String):
+func SpawnWarrior(pos: Vector2):
 	var spawned_scene = load("res://scenes/game/entities/characters/warrior/warrior.tscn")
 	var warrior = spawned_scene.instantiate()
+	warrior.set_position(pos)
 	add_child(warrior)
 
 func DeleteAllMonsters():
@@ -51,11 +53,10 @@ func _ready():
 	add_monster($Wizard)
 	add_monster($Warrior)
 	self.start("example", placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
+	#SpawnMage(Vector2(player.position))
+	#SpawnWarrior(Vector2(player.position))
 
 func _physics_process(_delta):
-	#if (Input.is_action_just_pressed("ui_accept")):
-		#SpawnMage("Hp$100$Super_name$plum")
-		#SpawnWarrior("Hp$100$Super_name$plum")
 	DeleteAllMonsters()
 	self.set_view_center(player.position.x, player.position.y)
 	var unload_xy: PackedInt64Array = self.which_to_unload()
