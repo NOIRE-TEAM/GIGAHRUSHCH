@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr084yl8jacq3"]
+[gd_scene load_steps=8 format=3 uid="uid://dr084yl8jacq3"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/WorldSaver.gd" id="1_7vo16"]
 [ext_resource type="PackedScene" uid="uid://co7l3sik6f6yn" path="res://scenes/game/entities/characters/player/main_char.tscn" id="1_dbngu"]
 [ext_resource type="Texture2D" uid="uid://ck47hcv5jq0ev" path="res://icon.svg" id="2_xtosk"]
+[ext_resource type="PackedScene" uid="uid://0r51c4hb1hn4" path="res://scenes/game/entities/characters/warrior/warrior.tscn" id="2_y4uj4"]
+[ext_resource type="PackedScene" uid="uid://cnu8687sm7nyw" path="res://scenes/game/entities/characters/wizard/wizard.tscn" id="3_sna8q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inb4r"]
 texture = ExtResource("2_xtosk")
@@ -11,9 +13,6 @@ texture_region_size = Vector2i(12, 12)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -6, 6, -6, 6, 6, -6, 6)
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -56,6 +55,9 @@ texture_region_size = Vector2i(12, 12)
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_bwnml"]
 tile_size = Vector2i(12, 12)
@@ -72,4 +74,9 @@ script = ExtResource("1_7vo16")
 [node name="TileMap" type="TileMap" parent="WorldSaver"]
 tile_set = SubResource("TileSet_bwnml")
 format = 2
-layer_0/tile_data = PackedInt32Array(262143, 0, 0, 196608, 0, 0)
+
+[node name="Wizard" parent="WorldSaver" instance=ExtResource("3_sna8q")]
+position = Vector2(-108, 6)
+
+[node name="Warrior" parent="WorldSaver" instance=ExtResource("2_y4uj4")]
+position = Vector2(103, 2)

@@ -55,11 +55,8 @@ func _physics_process(delta):
 			elif target != null: 
 				direction = 1
 			
-			if !on_the_ground_left:
-				direction = -1
-			elif !on_the_ground_right:
-				direction = 1
-			elif target == null && animation.is_flipped_h():
+
+			if target == null && animation.is_flipped_h():
 				direction = -1
 			elif target == null && !animation.is_flipped_h():
 				direction = 1
