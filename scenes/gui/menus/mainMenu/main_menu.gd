@@ -55,7 +55,7 @@ func _on_play_pressed():
 	var pressed_button = button_group.get_pressed_button()
 	if pressed_button != null:		
 		GlobalVariables.CurrentWorld = pressed_button.text
-		get_tree().change_scene_to_file("res://scenes/gui/menus/test_menu_scene.tscn")
+		get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
 
 
 
@@ -75,7 +75,7 @@ func _on_new_world_pressed():
 
 func _on_create_pressed():
 	GlobalVariables.CurrentWorld = $Worlds/NewWorld/TextEdit.text
-	get_tree().change_scene_to_file("res://scenes/gui/menus/test_menu_scene.tscn")
+	get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
 
 
 func _on_cancel_pressed():
