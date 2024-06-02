@@ -471,6 +471,7 @@ bus = &"SFX"
 [connection signal="pressed" from="Worlds/NewWorld/NewWorldButtons/Create" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="Worlds/NewWorld/NewWorldButtons/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Worlds/WorldsChoose/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Worlds/WorldsChoose/HBoxContainer/Delete" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="Worlds/WorldsChoose/ScrollContainer/VBoxContainer/NewWorld" to="." method="_on_new_world_pressed"]
 [connection signal="pressed" from="Worlds/WorldsChoose/Old/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="mouse_entered" from="Settings/CloseSettings" to="." method="_on_close_settings_mouse_entered"]
