@@ -10,7 +10,8 @@ func _ready():
 func _on_choose_world_pressed():
 	var worlds_container = $Worlds/WorldsChoose/ScrollContainer/VBoxContainer
 	for child in worlds_container.get_children():
-		child.queue_free()
+		if child.text != "Создать новый мир":
+			child.queue_free()
 	var dir = DirAccess.open("res://saves")
 	if dir:
 		dir.list_dir_begin()

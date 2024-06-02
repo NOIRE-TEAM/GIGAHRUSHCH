@@ -114,6 +114,7 @@ grow_horizontal = 0
 text = "x"
 
 [node name="NewWorld" type="Control" parent="Worlds"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -178,7 +179,6 @@ theme_override_font_sizes/font_size = 23
 placeholder_text = "Напишите сюда название нового мира"
 
 [node name="WorldsChoose" type="Control" parent="Worlds"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
