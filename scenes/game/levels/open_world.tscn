@@ -197,6 +197,13 @@ sources/0 = SubResource("TileSetAtlasSource_8si0c")
 [node name="OpenWorld" type="Node2D"]
 
 [node name="WorldSaver" type="WorldSaver" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
 script = ExtResource("1_7vo16")
 
 [node name="Player" parent="WorldSaver" instance=ExtResource("1_dbngu")]
