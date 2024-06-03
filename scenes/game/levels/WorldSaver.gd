@@ -3,14 +3,32 @@ extends WorldSaver
 var placing
 var player:CharacterBody2D
 var monsters = []
+var warriorNode
+var wizardNode
+
+func gen_chunk(start_x: int, start_y: int):
+	for add_y in range(self.CHUNK_SIZE_Y):
+		for add_x in range(self.CHUNK_SIZE_X):
+			if (add_y % 8 < 4):
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(3, 0))
+			elif (add_y % 8 == 6):
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(12, 0))
+			elif (add_y % 8 == 7):
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(11, 0))
+			else:
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(2, 0))
 
 func to_tilemap(x: int, y: int, content: PackedByteArray):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
 	var start_y: int = (y << self.CHUNK_SIZE_Y_POW) - 1
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
-			if content[(add_y << self.CHUNK_SIZE_Y_POW) + add_x] == 1:
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i.ZERO)
+			var iter: int = (add_y << self.CHUNK_SIZE_Y_POW) + add_x
+			if content[iter] == 0:
+				gen_chunk(start_x, start_y)
+				return
+			else:
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(content[iter], 0))
 
 func from_tilemap(x: int, y: int):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
@@ -19,24 +37,21 @@ func from_tilemap(x: int, y: int):
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
 			var tile = Vector2(start_x + add_x, start_y + add_y)
-			if placing.get_cell_atlas_coords(0, tile).x >= 0:
-				ret.append(1)
-				placing.erase_cell(0, tile)
-			else:
-				ret.append(0)
+			ret.append(placing.get_cell_atlas_coords(0, tile).x)
+			placing.erase_cell(0, tile)
 	return ret
 
-func SpawnMage(pos: Vector2):
-	var spawned_scene = load("res://scenes/game/entities/characters/wizard/wizard.tscn")
-	var mage = spawned_scene.instantiate()
+func SpawnWizard(pos: Vector2):
+	var mage = wizardNode.instantiate()
 	mage.set_position(pos)
 	add_child(mage)
+	add_monster(mage)
 	
 func SpawnWarrior(pos: Vector2):
-	var spawned_scene = load("res://scenes/game/entities/characters/warrior/warrior.tscn")
-	var warrior = spawned_scene.instantiate()
+	var warrior = warriorNode.instantiate()
 	warrior.set_position(pos)
 	add_child(warrior)
+	add_monster(warrior)
 
 func DeleteAllMonsters():
 	for monster in monsters:
@@ -48,13 +63,13 @@ func add_monster(monster: CharacterBody2D):
 	monsters.append(monster)
 
 func _ready():
+	warriorNode = preload("res://scenes/game/entities/characters/warrior/warrior.tscn")
+	wizardNode = preload("res://scenes/game/entities/characters/wizard/wizard.tscn")
 	player = get_child(0)
 	placing = get_child(1)
-	add_monster($Wizard)
-	add_monster($Warrior)
 	self.start(GlobalVariables.CurrentWorld, placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
-	#SpawnMage(Vector2(player.position))
-	#SpawnWarrior(Vector2(player.position))
+	SpawnWizard(Vector2(player.position))
+	SpawnWarrior(Vector2(player.position))
 
 func _physics_process(_delta):
 	DeleteAllMonsters()
@@ -72,7 +87,7 @@ func _physics_process(_delta):
 		payload = self.load_another_one()
 	if (Input.is_action_just_pressed("ui_attack")):
 		var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.set_cell(0, tile, 0, Vector2i.ZERO)
+		placing.set_cell(0, tile, 0, Vector2i(11, 0))
 	if (Input.is_action_just_pressed("ui_attack_2")):
 		var tile : Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.erase_cell(0, tile)
+		placing.set_cell(0, tile, 0, Vector2i(50, 0))
