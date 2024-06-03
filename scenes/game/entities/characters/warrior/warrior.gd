@@ -21,6 +21,9 @@ var moment_to_attack = false
 var attack_power = 30
 var on_the_ground_right:bool
 var on_the_ground_left:bool
+var anim_attack_num
+var attack_first_time:bool = false
+var animation_attack
 
 func _ready():
 	if randf() < 0.5:
@@ -78,11 +81,27 @@ func _physics_process(delta):
 		states.Attack:
 			if _body != null:
 				velocity.x = 0;
-				animation.play("attack")
-				if animation.get_frame() == 9:
-					damage_deal_zone.set_monitoring(true)
-				elif animation.get_frame() == 11:
-					damage_deal_zone.set_monitoring(false)
+				if not attack_first_time:
+					anim_attack_num = str(randi() % 3 + 1)
+					attack_first_time = true
+					animation_attack = "attack#" + anim_attack_num
+				animation.play(animation_attack)
+				if anim_attack_num == "1":
+					#print(animation_attack + str(animation.get_frame()))
+					if animation.get_frame() == 3:
+						damage_deal_zone.set_monitoring(true)
+					elif animation.get_frame() == 5:
+						damage_deal_zone.set_monitoring(false)
+				elif anim_attack_num == "2":
+					if animation.get_frame() == 2:
+						damage_deal_zone.set_monitoring(true)
+					elif animation.get_frame() == 3:
+						damage_deal_zone.set_monitoring(false)
+				elif anim_attack_num == "3":
+					if animation.get_frame() == 3:
+						damage_deal_zone.set_monitoring(true)
+					elif animation.get_frame() == 4:
+						damage_deal_zone.set_monitoring(false)
 				
 		states.GetHit:
 			animation.play("take_hit")
@@ -122,6 +141,7 @@ func _on_attack_zone_body_exited(body):
 
 func _on_animated_sprite_2d_animation_finished():
 	if body_exited && current_state == states.Attack:
+		attack_first_time = false
 		current_state = states.Idle
 	if current_state == states.GetHit:
 		if Hp <= 0:

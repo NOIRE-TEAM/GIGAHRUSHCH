@@ -4,6 +4,8 @@ var already_hit: bool
 var power_modifer:int = 0
 
 func enter(_msg: Dictionary={}):
+	var audio:AudioStream = preload("res://assets/audio/sounds/game/main_char_attack.mp3")
+	player.run_sound.set_stream(audio)
 	player.animation.set_speed_scale(4)
 	already_hit = false
 	$"../../Control/L_state".set_text(name)
@@ -14,6 +16,8 @@ func enter(_msg: Dictionary={}):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func inner_physics_process(_delta):
+	if player.run_sound.playing == false:
+		player.run_sound.play()
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 	

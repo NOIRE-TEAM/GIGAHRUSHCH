@@ -87,7 +87,7 @@ func _physics_process(_delta):
 		payload = self.load_another_one()
 	if (Input.is_action_just_pressed("ui_attack")):
 		var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.set_cell(0, tile, 0, Vector2i(11, 0))
+		placing.set_cell(0, tile, 0, Vector2i(7, 0))
 	if (Input.is_action_just_pressed("ui_attack_2")):
 		var tile : Vector2 = placing.local_to_map(placing.get_global_mouse_position())
 		placing.set_cell(0, tile, 0, Vector2i(50, 0))

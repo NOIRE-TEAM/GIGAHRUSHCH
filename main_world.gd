@@ -35,9 +35,9 @@ func SpawnWarrior(param_stroke: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (Input.is_action_just_pressed("ui_accept")):
-		SpawnMage("Hp$100$Super_name$plum")
-		SpawnWarrior("Hp$100$Super_name$plum")
+	#if (Input.is_action_just_pressed("ui_accept")):
+		#SpawnMage("Hp$100$Super_name$plum")
+		#SpawnWarrior("Hp$100$Super_name$plum")
 	if (Input.is_action_just_pressed("ui_focus_next")):
 		if $Player.is_inside_tree():
 			var player = get_node("Player")

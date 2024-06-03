@@ -1,13 +1,31 @@
 extends StatePlayer
 
+var is_do_jump:bool = false
 
 func enter(msg: Dictionary = {}):
+	var audio:AudioStream = preload("res://assets/audio/sounds/game/main_char_jump.mp3")
+	player.run_sound.set_stream(audio)
+	player.animation.set_speed_scale(2)
 	if msg.has("do_jump"):
+		is_do_jump = true
 		player.velocity.y = player.JUMP_VELOCITY
+		player.run_sound.play()
+	else:
+		is_do_jump = false
 	$"../../Control/L_state".set_text(name)
+	if player.velocity.y < 0:
+		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
+	elif msg.has("do_jump"):
+		player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 	
 func inner_physics_process(delta):
-	
+	if Input.is_action_pressed("ui_down"):
+		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
+	else:
+		if player.velocity.y < 0:
+			player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
+		elif is_do_jump:
+			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 	if player.velocity.y <0:
 		player.animation.play("jump")
 	elif player.velocity.y > 0:
@@ -36,7 +54,11 @@ func inner_physics_process(delta):
 	player.move_and_slide()
 	
 	if player.is_on_floor():
+		var audio:AudioStream = preload("res://assets/audio/sounds/game/main_char_fall.mp3")
+		player.run_sound.set_stream(audio)
+		player.run_sound.play()
 		if player.velocity.x == 0:
+			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 			state_machine.change_to("Idle")
 		else:
 			state_machine.change_to("Run")

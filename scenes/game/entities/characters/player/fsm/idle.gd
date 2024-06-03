@@ -5,11 +5,16 @@ func enter(_msg: Dictionary = {}):
 	$"../../Control/L_state".set_text(name)
 	
 func inner_physics_process(_delta):
+	player.animation.set_speed_scale(2)
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+	if Input.is_action_just_pressed("ui_down"):
+		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
+		player.timer.wait_time = player.time_for_time
+		player.timer.start()
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 		#
-	if player.get_hitted:
-		state_machine.change_to("Hitted")
 		
 	if Input.is_action_just_pressed("ui_attack"):
 		state_machine.change_to("Attack")
