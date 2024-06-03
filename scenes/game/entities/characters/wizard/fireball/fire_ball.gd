@@ -7,6 +7,7 @@ var already_hit:bool
 var attack_power = 35
 
 @onready var animation = $AnimatedSprite2D
+@onready var hitboxe = $hitboxe
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,13 +19,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if !is_explode && target != null:
-		
 		position += transform.x * speed  * delta
 
 func set_target(_body):
 	target = _body
 
 func explode():
+	hitboxe.set_deferred("monitoring",false)
 	is_explode = true
 	animation.play("explode")
 	

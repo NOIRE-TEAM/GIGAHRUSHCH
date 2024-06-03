@@ -72,6 +72,7 @@ func _physics_process(delta):
 				
 		states.GetHit:
 			attack_zone.set_monitoring(false)
+			velocity.x = 0;
 			animation.play("take_hit")
 			if Hp <= 0:
 				current_state = states.Death

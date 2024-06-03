@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://co7l3sik6f6yn"]
+[gd_scene load_steps=13 format=3 uid="uid://co7l3sik6f6yn"]
 
 [ext_resource type="Script" path="res://scenes/game/entities/characters/player/Player.gd" id="1_kp5r5"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/player/CameraPivot.gd" id="2_11bkf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/attack.gd" id="7_oc8sy"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/attack#2.gd" id="8_i2vrf"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/player/Hitted.gd" id="10_ukxco"]
+[ext_resource type="AudioStream" uid="uid://eiif7gtdkty4" path="res://assets/audio/sounds/game/main_person_running.mp3" id="11_dubf6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdngt"]
 height = 46.0
@@ -105,6 +106,11 @@ offset_right = 35.0
 offset_bottom = -40.0
 text = "Direction"
 metadata/_edit_use_anchors_ = true
+
+[node name="RunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_dubf6")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack#2" method="_on_animated_sprite_2d_animation_finished"]

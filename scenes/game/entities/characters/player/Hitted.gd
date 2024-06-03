@@ -3,10 +3,11 @@ extends StatePlayer
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
+	player.animation.set_speed_scale(2)
 	if player.enemy_coordinates > player.position.x:
-		player.velocity.x = -150
+		player.velocity.x = -200
 	else:
-		player.velocity.x = 150
+		player.velocity.x = 200
 	$"../../Control/L_state".set_text(name)
 	pass
 

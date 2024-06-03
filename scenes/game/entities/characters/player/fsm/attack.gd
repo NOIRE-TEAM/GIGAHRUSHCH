@@ -14,13 +14,14 @@ func enter(_msg: Dictionary={}):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func inner_physics_process(_delta):
+	if player.get_hitted:
+		state_machine.change_to("Hitted")
+	
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 	
 	player.animation.play("attack")
 
-	if player.get_hitted:
-		state_machine.change_to("Hitted")
 
 	if player.animation.get_frame() == 2:
 		player.attack_2_zone.set_monitoring(true)
