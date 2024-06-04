@@ -15,13 +15,15 @@ func inner_physics_process(delta):
 		state_machine.change_to("Hitted")
 	if Input.is_action_just_pressed("ui_down"):
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
+		player.timer.wait_time = player.time_for_time
+		player.timer.start(player.time_for_time)
 	if not player.is_on_floor():
 		player.run_sound.stop()
 		state_machine.change_to("Air")
 	
-	if Input.is_action_just_pressed("ui_attack"):
-		player.run_sound.stop()
-		state_machine.change_to("Attack")
+	#if Input.is_action_just_pressed("ui_attack"):
+		#player.run_sound.stop()
+		#state_machine.change_to("Attack")
 		
 	if Input.is_action_just_pressed("ui_attack_2"):
 		player.run_sound.stop()
@@ -44,9 +46,9 @@ func inner_physics_process(delta):
 	elif direction > 0 and player.animation.is_flipped_h():
 		player.animation.set_flip_h(false)
 		player.u_turn.emit("right")
-	
-	player.move_and_slide()
-	
+	if !Input.is_action_just_pressed("ui_jump"):
+		player.move_and_slide()
+	print(player.velocity.y)
 	if player.velocity.x == 0 and direction == 0 and !Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right"):
 		player.run_sound.stop()
 		state_machine.change_to("Idle")

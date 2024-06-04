@@ -37,8 +37,8 @@ func inner_physics_process(_delta):
 func _on_animated_sprite_2d_animation_finished():
 	if Input.is_action_pressed("ui_attack_2"):
 		state_machine.change_to("Attack#2")
-	elif Input.is_action_pressed("ui_attack"):
-		state_machine.change_to("Attack")
+	#elif Input.is_action_pressed("ui_attack"):
+		#state_machine.change_to("Attack")
 	elif Input.is_action_pressed("ui_jump"):
 		state_machine.change_to("Air", {do_jump=true})
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):

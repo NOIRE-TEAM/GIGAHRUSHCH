@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://db06x23v5lbbp"]
 
-[ext_resource type="Texture2D" uid="uid://db6nidk7b7mua" path="res://assets/gui/testBackground/1.Sky_free.png" id="1_dfks0"]
-[ext_resource type="Texture2D" uid="uid://b1usvq2oj1al5" path="res://assets/gui/testBackground/2.Mountains.png" id="2_0de1b"]
-[ext_resource type="Texture2D" uid="uid://b1gbba1gvowml" path="res://assets/gui/testBackground/3.Trees_back.png" id="3_uvrxk"]
-[ext_resource type="Texture2D" uid="uid://6a6fx6a3as86" path="res://assets/gui/testBackground/4.Groundt.png" id="4_63kj4"]
+[ext_resource type="Texture2D" uid="uid://cq0u54rtqs6dt" path="res://assets/gui/testBackground/bg.png" id="1_i80ph"]
+[ext_resource type="Texture2D" uid="uid://c50pqwm5aakl4" path="res://assets/gui/testBackground/far-buildings.png" id="2_b0f24"]
+[ext_resource type="Texture2D" uid="uid://dg1wavotrh2ga" path="res://assets/gui/testBackground/buildings.png" id="3_ma26u"]
+[ext_resource type="Texture2D" uid="uid://cox4am2y1bf55" path="res://assets/gui/testBackground/skill-foreground.png" id="4_074hg"]
 
 [sub_resource type="GDScript" id="GDScript_50ota"]
 script/source = "extends ParallaxBackground
@@ -23,32 +23,31 @@ motion_scale = Vector2(0.2, 1)
 motion_mirroring = Vector2(1152, 2.08165e-12)
 
 [node name="1_skyFree" type="Sprite2D" parent="ParallaxLayer1"]
-position = Vector2(576.5, 324.5)
-scale = Vector2(3.6, 3.6)
-texture = ExtResource("1_dfks0")
+position = Vector2(576.5, 323)
+scale = Vector2(4.23897, 4.0375)
+texture = ExtResource("1_i80ph")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.6, 1)
 motion_mirroring = Vector2(1152, 2.08165e-12)
 
 [node name="2_mountains" type="Sprite2D" parent="ParallaxLayer2"]
-position = Vector2(576.5, 324.5)
-scale = Vector2(3.6, 3.6)
-texture = ExtResource("2_0de1b")
+position = Vector2(576.5, 323.5)
+scale = Vector2(5.41315, 4.55634)
+texture = ExtResource("2_b0f24")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(1152, 2.08165e-12)
 
 [node name="3_treesBack" type="Sprite2D" parent="ParallaxLayer3"]
-position = Vector2(576, 360)
-scale = Vector2(3.6, 3.6)
-texture = ExtResource("3_uvrxk")
+position = Vector2(574.5, 323.5)
+scale = Vector2(4.23897, 4.3)
+texture = ExtResource("3_ma26u")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
-visible = false
 motion_mirroring = Vector2(1152, 2.08165e-12)
 
 [node name="4_groundt" type="Sprite2D" parent="ParallaxLayer4"]
-position = Vector2(576.5, 324.5)
-scale = Vector2(3.6, 3.6)
-texture = ExtResource("4_63kj4")
+position = Vector2(574.5, 493)
+scale = Vector2(4.22427, 2.92308)
+texture = ExtResource("4_074hg")

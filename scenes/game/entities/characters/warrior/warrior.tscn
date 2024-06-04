@@ -20,6 +20,7 @@ collision_layer = 4
 script = ExtResource("1_2fhex")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -65.0
 offset_right = 22.0
@@ -28,6 +29,7 @@ text = "Label"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 offset_left = -23.0
 offset_top = -88.0
 offset_right = 28.0
@@ -36,6 +38,7 @@ text = "Label2"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="."]
+visible = false
 offset_left = -23.0
 offset_top = -111.0
 offset_right = 28.0

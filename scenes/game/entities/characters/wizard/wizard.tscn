@@ -27,6 +27,7 @@ speed_scale = 1.5
 shape = SubResource("CapsuleShape2D_ukcw0")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -47.0
 offset_right = 22.0
@@ -34,6 +35,7 @@ offset_bottom = -24.0
 text = "Label"
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -69.0
 offset_right = 22.0
