@@ -75,17 +75,20 @@ func _physics_process(_delta):
 	DeleteAllMonsters()
 	self.set_view_center(player.position.x, player.position.y)
 	unload_all()
-	var payload: PackedByteArray = self.load_another_one()
-	while !payload.is_empty():
-		var fields = payload.slice(0, 16).to_int64_array()
-		to_tilemap(fields[0], fields[1], payload.slice(16))
-		payload = self.load_another_one()
+	load_all()
 	if (Input.is_action_just_pressed("ui_attack")):
 		var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
 		placing.set_cell(0, tile, 0, Vector2i(7, 0))
 	if (Input.is_action_just_pressed("ui_attack_2")):
 		var tile : Vector2 = placing.local_to_map(placing.get_global_mouse_position())
 		placing.set_cell(0, tile, 0, Vector2i(50, 0))
+
+func load_all():
+	var payload: PackedByteArray = self.load_another_one()
+	while !payload.is_empty():
+		var fields = payload.slice(0, 16).to_int64_array()
+		to_tilemap(fields[0], fields[1], payload.slice(16))
+		payload = self.load_another_one()
 
 func unload_all():
 	var unload_xy: PackedInt64Array = self.which_to_unload()
@@ -99,4 +102,5 @@ func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
 			self.exit()
-			#unload_all() Нихуя не пофиксил
+			load_all()
+			unload_all()
