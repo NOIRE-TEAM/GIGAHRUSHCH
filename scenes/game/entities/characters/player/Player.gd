@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 const RUN_INERTION = 30.0
 const ATTACK_INERTION = 10
 const ATTACK_2_POWER = 30
-const time_for_time = 1
+const time_for_time = 0.35
 
 signal u_turn
 

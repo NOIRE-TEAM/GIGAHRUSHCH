@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/gui/menus/mainMenu/main_menu.gd" id="1_ow5nf"]
 [ext_resource type="ButtonGroup" uid="uid://cx8ag3o05utul" path="res://scenes/gui/menus/mainMenu/saves_button_group.tres" id="2_t1wtj"]
 [ext_resource type="PackedScene" uid="uid://cqj2m3pknlj4y" path="res://scenes/gui/menus/mainMenu/volumeSlider/volume_slider.tscn" id="3_vxlst"]
-[ext_resource type="AudioStream" uid="uid://dl0x21uaf4es1" path="res://assets/audio/music/test_loop.ogg" id="5_xd61a"]
+[ext_resource type="AudioStream" uid="uid://qnsg07s5fwwn" path="res://scenes/gui/menus/mainMenu/industrial.mp3" id="5_qe0lv"]
 [ext_resource type="AudioStream" uid="uid://d20kio2nl8a0n" path="res://assets/audio/sounds/gui/hover.mp3" id="6_3cx0s"]
 
 [sub_resource type="FontVariation" id="FontVariation_1e4sv"]
@@ -21,7 +21,6 @@ script = ExtResource("1_ow5nf")
 button_group = ExtResource("2_t1wtj")
 
 [node name="Main" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -456,7 +455,7 @@ text = "Управление"
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_4ke34")]
 
 [node name="MusicBackground" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_xd61a")
+stream = ExtResource("5_qe0lv")
 autoplay = true
 bus = &"Music"
 

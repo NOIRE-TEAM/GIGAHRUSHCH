@@ -11,13 +11,13 @@ func inner_physics_process(_delta):
 	if Input.is_action_just_pressed("ui_down"):
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
 		player.timer.wait_time = player.time_for_time
-		player.timer.start()
+		player.timer.start(player.time_for_time)
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 		#
 		
-	if Input.is_action_just_pressed("ui_attack"):
-		state_machine.change_to("Attack")
+	#if Input.is_action_just_pressed("ui_attack"):
+		#state_machine.change_to("Attack")
 		
 	if Input.is_action_just_pressed("ui_attack_2"):
 		state_machine.change_to("Attack#2")

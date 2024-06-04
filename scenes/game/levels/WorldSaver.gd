@@ -87,6 +87,7 @@ func add_monster(monster: CharacterBody2D):
 	monsters.append(monster)
 
 func _ready():
+	$"../AudioStreamPlayer".play()
 	warriorNode = preload("res://scenes/game/entities/characters/warrior/warrior.tscn")
 	wizardNode = preload("res://scenes/game/entities/characters/wizard/wizard.tscn")
 	player = get_child(0)
