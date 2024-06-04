@@ -6,17 +6,41 @@ var monsters = []
 var warriorNode
 var wizardNode
 
+const door = [[38, 39, 40],
+			  [41, 42, 43],
+			  [44, 45, 46],
+			  [47, 48, 49]]
+
+const stairs = [[ 3, 13, 16, 29,  3,  3,  3,  4,  5,  2,  2, 21],
+				[ 3,  3,  3, 13, 16, 29,  5,  2,  2,  2,  2, 21],
+				[ 3,  3,  3,  4,  5, 34, 35, 30, 12, 12, 12, 21],
+				[ 3,  4,  5,  2,  2,  8,  9, 33,  7, 11, 11, 23],
+				[ 2,  2,  2,  8,  9,  6,  7, 10,  3,  3,  3, 21],
+				[ 2,  8,  9,  6,  7, 10,  3,  3,  3,  3,  3, 21],
+				[ 9,  6,  7, 10,  3,  3,  3,  3,  3,  3,  3, 21],
+				[16, 37,  3,  3,  3,  3,  3,  3,  3,  3,  3, 21]]
+
 func gen_chunk(start_x: int, start_y: int):
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
-			if (add_y % 8 < 4):
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(3, 0))
-			elif (add_y % 8 == 6):
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(12, 0))
-			elif (add_y % 8 == 7):
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(11, 0))
+			var add_y_8 = add_y % 8
+			var where = Vector2(start_x + add_x, start_y + add_y)
+			if (start_x == -1 && add_x >= self.CHUNK_SIZE_X - 12): # stairs
+				placing.set_cell(0, where, 0, Vector2i(stairs[add_y_8][(add_x + 12 - self.CHUNK_SIZE_X)], 0))
+			elif (3 <= add_y_8 && add_y_8 <= 6 && add_x < 3): # door
+				placing.set_cell(0, where, 0, Vector2i(door[add_y_8 - 3][add_x], 0))
+			elif (add_y_8 < 4):
+				placing.set_cell(0, where, 0, Vector2i(3, 0))
+			elif (add_y_8 == 6):
+				placing.set_cell(0, where, 0, Vector2i(12, 0))
+				if (add_x == self.CHUNK_SIZE_X / 3):
+					SpawnWizard(where * placing.tile_set.tile_size.x)
+				elif (add_x == self.CHUNK_SIZE_X - self.CHUNK_SIZE_X / 3):
+					SpawnWarrior(where * placing.tile_set.tile_size.x)
+			elif (add_y_8 == 7):
+				placing.set_cell(0, where, 0, Vector2i(11, 0))
 			else:
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(2, 0))
+				placing.set_cell(0, where, 0, Vector2i(2, 0))
 
 func to_tilemap(x: int, y: int, content: PackedByteArray):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
@@ -68,8 +92,6 @@ func _ready():
 	player = get_child(0)
 	placing = get_child(1)
 	self.start(GlobalVariables.CurrentWorld, placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
-	SpawnWizard(Vector2(player.position))
-	SpawnWarrior(Vector2(player.position))
 
 func _physics_process(_delta):
 	DeleteAllMonsters()
