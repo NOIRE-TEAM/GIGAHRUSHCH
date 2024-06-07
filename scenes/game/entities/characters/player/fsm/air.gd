@@ -9,7 +9,7 @@ func enter(msg: Dictionary = {}):
 	if msg.has("do_jump"):
 		is_do_jump = true
 		player.velocity.y = player.JUMP_VELOCITY
-		print(player.velocity.y)
+		#print(player.velocity.y)
 		player.run_sound.play()
 	else:
 		player.timer.wait_time = player.time_for_time
@@ -22,7 +22,7 @@ func enter(msg: Dictionary = {}):
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 	
 func inner_physics_process(delta):
-	print(player.velocity.y)
+	#print(player.velocity.y)
 	if Input.is_action_pressed("ui_down"):
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
 		player.timer.wait_time = player.time_for_time

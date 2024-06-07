@@ -48,7 +48,7 @@ func inner_physics_process(delta):
 		player.u_turn.emit("right")
 	if !Input.is_action_just_pressed("ui_jump"):
 		player.move_and_slide()
-	print(player.velocity.y)
+	#print(player.velocity.y)
 	if player.velocity.x == 0 and direction == 0 and !Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right"):
 		player.run_sound.stop()
 		state_machine.change_to("Idle")
