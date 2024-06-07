@@ -101,10 +101,16 @@ func _physics_process(_delta):
 	load_all()
 	if (Input.is_action_just_pressed("ui_attack")):
 		var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.set_cell(0, tile, 0, Vector2i(7, 0))
+		placing.set_cell(0, tile, 0, Vector2i(50, 0))
 	if (Input.is_action_just_pressed("ui_attack_2")):
 		var tile : Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.set_cell(0, tile, 0, Vector2i(50, 0))
+		var to_replace = placing.get_cell_atlas_coords(0, tile).x
+		if 6 <= to_replace && to_replace <= 17:
+			placing.set_cell(0, tile, 0, Vector2i(45 + to_replace, 0))
+		elif 20 <= to_replace && to_replace <= 37:
+			placing.set_cell(0, tile, 0, Vector2i(43 + to_replace, 0))
+		elif to_replace == 50:
+			placing.set_cell(0, tile, 0, Vector2i(81, 0))
 
 func load_all():
 	var payload: PackedByteArray = self.load_another_one()
