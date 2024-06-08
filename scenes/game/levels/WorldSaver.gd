@@ -1,10 +1,10 @@
 extends WorldSaver
 
-var placing
-var player:CharacterBody2D
+var placing: TileMap
+var player: CharacterBody2D
 var monsters = []
-var warriorNode
-var wizardNode
+var warriorNode: PackedScene
+var wizardNode: PackedScene
 
 const door = [[38, 39, 40],
 			  [41, 42, 43],
@@ -61,6 +61,9 @@ func from_tilemap(x: int, y: int):
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
 			var tile = Vector2(start_x + add_x, start_y + add_y)
+			#var tmp = placing.get_cell_atlas_coords(0, tile).x
+			#if tmp <= 0:
+			#	print(tmp, "from at", start_x, " ", start_y, " ", x, " ", y)
 			ret.append(placing.get_cell_atlas_coords(0, tile).x)
 			placing.erase_cell(0, tile)
 	return ret
@@ -99,12 +102,12 @@ func _physics_process(_delta):
 	self.set_view_center(player.position.x, player.position.y)
 	unload_all()
 	load_all()
+	var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
+	var to_replace = placing.get_cell_atlas_coords(0, tile).x
 	if (Input.is_action_just_pressed("ui_attack")):
-		var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		placing.set_cell(0, tile, 0, Vector2i(50, 0))
+		if to_replace >= 51 || to_replace == 19 || to_replace == 18 || to_replace <= 5:
+			placing.set_cell(0, tile, 0, Vector2i(50, 0))
 	if (Input.is_action_just_pressed("ui_attack_2")):
-		var tile : Vector2 = placing.local_to_map(placing.get_global_mouse_position())
-		var to_replace = placing.get_cell_atlas_coords(0, tile).x
 		if 6 <= to_replace && to_replace <= 17:
 			placing.set_cell(0, tile, 0, Vector2i(45 + to_replace, 0))
 		elif 20 <= to_replace && to_replace <= 37:
@@ -131,5 +134,4 @@ func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
 			self.exit()
-			load_all()
 			unload_all()
