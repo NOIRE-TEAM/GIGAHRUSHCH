@@ -82,7 +82,9 @@ func SpawnWarrior(pos: Vector2):
 
 func DeleteAllMonsters():
 	for monster in monsters:
-		if (player.get_position() - monster.get_position()).length() > self.CHUNK_SIZE_X * placing.tile_set.tile_size.x:
+		if (player.get_position() - monster.get_position()).length() > (
+				self.CHUNK_SIZE_X * placing.tile_set.tile_size.x +
+				self.CHUNK_SIZE_Y * placing.tile_set.tile_size.y):
 			monsters.erase(monster)
 			monster.queue_free()
 
