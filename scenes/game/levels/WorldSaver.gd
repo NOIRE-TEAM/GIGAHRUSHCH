@@ -25,7 +25,7 @@ func gen_chunk(start_x: int, start_y: int):
 		for add_x in range(self.CHUNK_SIZE_X):
 			var add_y_8 = add_y % 8
 			var where = Vector2(start_x + add_x, start_y + add_y)
-			if (start_x == -1 && add_x >= self.CHUNK_SIZE_X - 12): # stairs
+			if (((start_x + 1) >> self.CHUNK_SIZE_X_POW) % 4 == 0 && add_x >= self.CHUNK_SIZE_X - 12): # stairs
 				placing.set_cell(0, where, 0, Vector2i(stairs[add_y_8][(add_x + 12 - self.CHUNK_SIZE_X)], 0))
 			elif (3 <= add_y_8 && add_y_8 <= 6 && add_x < 3): # door
 				placing.set_cell(0, where, 0, Vector2i(door[add_y_8 - 3][add_x], 0))
