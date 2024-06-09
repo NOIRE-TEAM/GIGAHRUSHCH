@@ -74,7 +74,6 @@ script = ExtResource("8_i2vrf")
 script = ExtResource("10_ukxco")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -82,7 +81,10 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="L_state" type="Label" parent="Control"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.325
+anchor_right = -0.325
 offset_left = -23.0
 offset_top = -42.0
 offset_right = 17.0
@@ -106,6 +108,34 @@ offset_top = -63.0
 offset_right = 35.0
 offset_bottom = -40.0
 text = "Direction"
+metadata/_edit_use_anchors_ = true
+
+[node name="L_velocity_x" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.05
+anchor_top = -1.45
+anchor_right = 0.125
+anchor_bottom = -1.45
+offset_left = -36.0
+offset_top = -63.0
+offset_right = 35.0
+offset_bottom = -40.0
+text = "Velocity_X"
+metadata/_edit_use_anchors_ = true
+
+[node name="L_velocity_y" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.025
+anchor_top = -0.975
+anchor_right = -0.025
+anchor_bottom = -0.975
+offset_left = -36.0
+offset_top = -63.0
+offset_right = 35.0
+offset_bottom = -40.0
+text = "Velocity_Y"
 metadata/_edit_use_anchors_ = true
 
 [node name="RunSound" type="AudioStreamPlayer2D" parent="."]

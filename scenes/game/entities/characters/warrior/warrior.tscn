@@ -17,6 +17,7 @@ height = 36.0
 
 [node name="Warrior" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 17
 script = ExtResource("1_2fhex")
 
 [node name="Label" type="Label" parent="."]
@@ -50,8 +51,10 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, -12)
 scale = Vector2(0.75, 0.585938)
 sprite_frames = ExtResource("1_udmrn")
-animation = &"attack#3"
-speed_scale = 2.0
+animation = &"take_hit"
+frame = 1
+frame_progress = 1.0
+speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
@@ -101,6 +104,9 @@ debug_color = Color(0, 0.552941, 0.909804, 0.419608)
 [node name="TimeUntilRun" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="TimerWhileHitted" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Zones/WatchZone" to="." method="_on_watch_zone_body_entered"]

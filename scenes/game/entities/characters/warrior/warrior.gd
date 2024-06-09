@@ -19,8 +19,6 @@ var body_exited
 var target
 var moment_to_attack = false
 var attack_power = 30
-var on_the_ground_right:bool
-var on_the_ground_left:bool
 var anim_attack_num
 var attack_first_time:bool = false
 var animation_attack
@@ -37,71 +35,72 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animation = $AnimatedSprite2D
 @onready var attack_zone = $Zones/AttackZone
 @onready var damage_deal_zone = $Zones/DamageDealZone
+@onready var being_hitted_timer = $TimerWhileHitted
 
 func _physics_process(delta):
 	match current_state:
 		states.Idle:
 			velocity.x = 0;
-			if not is_on_floor():
-				current_state = states.Walk
 			animation.play("idle")
-			if target != null:
-				current_state = states.Walk
+			if being_hitted_timer.time_left == 0:
+				if not is_on_floor():
+					current_state = states.Walk
+				if target != null:
+					current_state = states.Walk
 		states.Walk:
-			animation.play("run")
-			if not is_on_floor():
-				velocity.y += gravity * delta
-			$Label2.set_text(str(on_the_ground_left))
-			$Label3.set_text(str(on_the_ground_right))
-			if target != null && target.position.x < position.x:
-				direction = -1
-			elif target != null: 
-				direction = 1
+			if being_hitted_timer.time_left == 0:
+				animation.play("run")
+				if not is_on_floor():
+					velocity.y += gravity * delta
+				if target != null && target.position.x < position.x:
+					direction = -1
+				elif target != null: 
+					direction = 1
 			
+				if target == null && animation.is_flipped_h():
+					direction = -1
+				elif target == null && !animation.is_flipped_h():
+					direction = 1
+					
+				if direction:
+					velocity.x = direction * SPEED
+				else:
+					velocity.x = move_toward(velocity.x, 0, SPEED)
 
-			if target == null && animation.is_flipped_h():
-				direction = -1
-			elif target == null && !animation.is_flipped_h():
-				direction = 1
-				
-			if direction:
-				velocity.x = direction * SPEED
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-
-			if direction > 0:
-				animation.set_flip_h(false)
-				attack_zone.set_scale(Vector2(1,1))
-				damage_deal_zone.set_scale(Vector2(1,1))
-			elif direction < 0:
-				animation.set_flip_h(true)
-				attack_zone.set_scale(Vector2(-1,1))
-				damage_deal_zone.set_scale(Vector2(-1,1))
+				if direction > 0:
+					animation.set_flip_h(false)
+					attack_zone.set_scale(Vector2(1,1))
+					damage_deal_zone.set_scale(Vector2(1,1))
+				elif direction < 0:
+					animation.set_flip_h(true)
+					attack_zone.set_scale(Vector2(-1,1))
+					damage_deal_zone.set_scale(Vector2(-1,1))
 				
 		states.Attack:
-			if _body != null:
-				velocity.x = 0;
-				if not attack_first_time:
-					anim_attack_num = str(randi() % 3 + 1)
-					attack_first_time = true
-					animation_attack = "attack#" + anim_attack_num
-				animation.play(animation_attack)
-				if anim_attack_num == "1":
-					#print(animation_attack + str(animation.get_frame()))
-					if animation.get_frame() == 3:
-						damage_deal_zone.set_monitoring(true)
-					elif animation.get_frame() == 5:
-						damage_deal_zone.set_monitoring(false)
-				elif anim_attack_num == "2":
-					if animation.get_frame() == 2:
-						damage_deal_zone.set_monitoring(true)
-					elif animation.get_frame() == 3:
-						damage_deal_zone.set_monitoring(false)
-				elif anim_attack_num == "3":
-					if animation.get_frame() == 3:
-						damage_deal_zone.set_monitoring(true)
-					elif animation.get_frame() == 4:
-						damage_deal_zone.set_monitoring(false)
+			if being_hitted_timer.time_left == 0:
+				if _body != null:
+					velocity.x = 0;
+					if not attack_first_time:
+						anim_attack_num = str(randi() % 3 + 1)
+						attack_first_time = true
+						animation_attack = "attack#" + anim_attack_num
+					animation.play(animation_attack)
+					if anim_attack_num == "1":
+						#print(animation_attack + str(animation.get_frame()))
+						if animation.get_frame() == 4:
+							damage_deal_zone.set_monitoring(true)
+						elif animation.get_frame() == 5:
+							damage_deal_zone.set_monitoring(false)
+					elif anim_attack_num == "2":
+						if animation.get_frame() == 2:
+							damage_deal_zone.set_monitoring(true)
+						elif animation.get_frame() == 3:
+							damage_deal_zone.set_monitoring(false)
+					elif anim_attack_num == "3":
+						if animation.get_frame() == 3:
+							damage_deal_zone.set_monitoring(true)
+						elif animation.get_frame() == 4:
+							damage_deal_zone.set_monitoring(false)
 				
 		states.GetHit:
 			animation.play("take_hit")
@@ -110,7 +109,6 @@ func _physics_process(delta):
 				current_state = states.Death
 			
 		states.Death:
-			print("Warrior is dead")
 			attack_zone.set_monitoring(false)
 			damage_deal_zone.set_monitoring(false)
 			$Zones/TakeHitZone.set_monitorable(false)
@@ -157,6 +155,9 @@ func _on_damage_deal_zone_body_entered(body):
 		body.hitted(attack_power, position.x)
 
 func take_hit(value:):
+	being_hitted_timer.wait_time = 1
+	being_hitted_timer.start()
+	
 	print("Warrior take hit by %s" % value)
 	Hp -= value;
 	current_state = states.GetHit
@@ -165,20 +166,3 @@ func take_hit(value:):
 func _on_time_until_run_timeout():
 	if target == null:
 		current_state = states.Walk
-
-
-func _on_not_fall_zone_right_body_entered(body):
-	on_the_ground_right = true
-	print("right collide")
-
-func _on_not_fall_zone_right_body_exited(body):
-	on_the_ground_right = false
-	print("right out")
-
-func _on_not_fall_zone_left_body_entered(body):
-	on_the_ground_left = true
-	print("left collide")
-
-func _on_not_fall_zone_left_body_exited(body):
-	on_the_ground_left = false
-	print("left out")

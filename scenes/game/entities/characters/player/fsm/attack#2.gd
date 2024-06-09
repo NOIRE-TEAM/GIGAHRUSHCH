@@ -4,6 +4,7 @@ var already_hit: bool
 var power_modifer:int = 0
 
 func enter(_msg: Dictionary={}):
+	$"../../Control/L_hp".set_text(str(player.hp))
 	var audio:AudioStream = preload("res://assets/audio/sounds/game/main_char_attack.mp3")
 	player.run_sound.set_stream(audio)
 	player.animation.set_speed_scale(4)
@@ -16,8 +17,13 @@ func enter(_msg: Dictionary={}):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func inner_physics_process(_delta):
+	$"../../Control/L_velocity_x".set_text(str(player.velocity.x))
+	$"../../Control/L_velocity_y".set_text(str(player.velocity.y))
+	
 	if player.run_sound.playing == false:
 		player.run_sound.play()
+		
+	
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
 	
@@ -35,13 +41,13 @@ func inner_physics_process(_delta):
 	player.move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
-	if Input.is_action_pressed("ui_attack_2"):
+	if Input.is_action_pressed("ui_attack_2") and !player.get_hitted:
 		state_machine.change_to("Attack#2")
 	#elif Input.is_action_pressed("ui_attack"):
 		#state_machine.change_to("Attack")
-	elif Input.is_action_pressed("ui_jump"):
+	elif Input.is_action_pressed("ui_jump") and !player.get_hitted:
 		state_machine.change_to("Air", {do_jump=true})
-	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") and !player.get_hitted:
 			state_machine.change_to("Run")
 	else: 
 		state_machine.change_to("Idle")
