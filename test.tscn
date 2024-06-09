@@ -13,7 +13,7 @@
 size = Vector2(894.75, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jdxa"]
-size = Vector2(491, 29)
+size = Vector2(664.5, 29)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qo1mm"]
 texture = ExtResource("6_yqnw1")
@@ -446,11 +446,11 @@ offset_bottom = 119.0
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
 offset_left = -263.0
 offset_top = 42.0
-offset_right = 228.0
+offset_right = 402.0
 offset_bottom = 71.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-17, 57)
+position = Vector2(69.75, 57)
 shape = SubResource("RectangleShape2D_7jdxa")
 
 [node name="Wizard" parent="." instance=ExtResource("2_yp1uv")]
