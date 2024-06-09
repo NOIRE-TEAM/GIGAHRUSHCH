@@ -18,10 +18,10 @@ func enter(msg: Dictionary = {}):
 		is_do_jump = false
 	$"../../Control/L_state".set_text(name)
 	if player.velocity.y < 0:
-		print("Start 16")
+		#print("Start 16")
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
 	elif msg.has("do_jump"):
-		print("Start 1")
+		#print("Start 1")
 		player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 	
 func inner_physics_process(delta):
@@ -33,10 +33,10 @@ func inner_physics_process(delta):
 		player.timer.start(player.time_for_time)
 	else:
 		if player.velocity.y < 0:
-			print("Inner 16")
+			#print("Inner 16")
 			player.tilemap.tile_set.set_physics_layer_collision_layer(1,16)
 		elif is_do_jump:
-			print("Inner 1")
+			#print("Inner 1")
 			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 		elif player.velocity.y > 0 && player.timer.time_left == 0:
 			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
