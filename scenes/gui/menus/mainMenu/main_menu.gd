@@ -12,7 +12,7 @@ func _on_choose_world_pressed():
 	for child in worlds_container.get_children():
 		if child.text != "Создать новый мир":
 			child.queue_free()
-	var dir = DirAccess.open("res://saves")
+	var dir = DirAccess.open("./saves")
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
