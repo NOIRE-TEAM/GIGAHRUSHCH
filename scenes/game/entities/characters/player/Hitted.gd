@@ -25,7 +25,9 @@ func inner_physics_process(delta):
 		player.velocity.y += player.gravity * delta
 	
 	if player.hp <= 0:
-		player.queue_free()
+		#player.queue_free()
+		get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
+		return
 	player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
 
 	player.move_and_slide()
