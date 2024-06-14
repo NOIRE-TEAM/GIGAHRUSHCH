@@ -6,3 +6,5 @@ reloadable = true
 [libraries]
 windows.debug.x86_64 =   "res://lib/my_test_gdext.dll"
 windows.release.x86_64 = "res://lib/my_test_gdext.dll"
+macos.debug =            "res://lib/libmy_test_gdext.dylib"
+macos.release =          "res://lib/libmy_test_gdext.dylib"
