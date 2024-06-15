@@ -78,6 +78,7 @@ func _physics_process(delta):
 				current_state = states.Death
 			
 		states.Death:
+			GlobalVariables.monsters.erase(self)
 			attack_zone.set_monitoring(false)
 			take_hit_area.set_monitorable(false)
 			animation.play("death")

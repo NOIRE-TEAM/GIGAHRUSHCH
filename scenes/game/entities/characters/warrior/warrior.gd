@@ -103,12 +103,14 @@ func _physics_process(delta):
 							damage_deal_zone.set_monitoring(false)
 				
 		states.GetHit:
+			velocity.x = 0
 			animation.play("take_hit")
 			print(Hp)
 			if Hp <= 0:
 				current_state = states.Death
 			
 		states.Death:
+			GlobalVariables.monsters.erase(self)
 			attack_zone.set_monitoring(false)
 			damage_deal_zone.set_monitoring(false)
 			$Zones/TakeHitZone.set_monitorable(false)
