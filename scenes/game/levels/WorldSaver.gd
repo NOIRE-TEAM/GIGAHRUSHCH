@@ -2,7 +2,6 @@ extends WorldSaver
 
 var placing: TileMap
 var player: CharacterBody2D
-var monsters = []
 var warriorNode: PackedScene
 var wizardNode: PackedScene
 
@@ -81,15 +80,15 @@ func SpawnWarrior(pos: Vector2):
 	add_monster(warrior)
 
 func DeleteAllMonsters():
-	for monster in monsters:
+	for monster in GlobalVariables.monsters:
 		if (player.get_position() - monster.get_position()).length() > (
 				self.CHUNK_SIZE_X * placing.tile_set.tile_size.x +
 				self.CHUNK_SIZE_Y * placing.tile_set.tile_size.y):
-			monsters.erase(monster)
+			GlobalVariables.monsters.erase(monster)
 			monster.queue_free()
 
 func add_monster(monster: CharacterBody2D):
-	monsters.append(monster)
+	GlobalVariables.monsters.append(monster)
 
 func _ready():
 	$"../AudioStreamPlayer".play()

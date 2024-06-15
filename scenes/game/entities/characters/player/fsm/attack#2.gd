@@ -37,7 +37,7 @@ func inner_physics_process(_delta):
 	elif player.animation.get_frame() == 7:
 		player.attack_2_zone.set_monitoring(false)
 
-	player.velocity.x = move_toward(player.velocity.x, 0, player.ATTACK_INERTION)
+	player.velocity.x = 0
 	player.move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
