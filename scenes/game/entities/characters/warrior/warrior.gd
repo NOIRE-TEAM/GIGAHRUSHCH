@@ -23,6 +23,8 @@ var anim_attack_num
 var attack_first_time:bool = false
 var animation_attack
 
+var alive = true
+
 func _ready():
 	if randf() < 0.5:
 		direction = -1
@@ -38,6 +40,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var being_hitted_timer = $TimerWhileHitted
 
 func _physics_process(delta):
+	if !alive:
+		return
+		
 	match current_state:
 		states.Idle:
 			velocity.x = 0;
@@ -115,6 +120,8 @@ func _physics_process(delta):
 			damage_deal_zone.set_monitoring(false)
 			$Zones/TakeHitZone.set_monitorable(false)
 			$Zones/WatchZone.set_monitoring(false)
+			
+			alive = false
 			animation.play("death")
 			
 	$Label.set_text(states.keys()[current_state])			
