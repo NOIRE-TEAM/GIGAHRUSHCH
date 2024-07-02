@@ -122,9 +122,10 @@ func _physics_process(delta):
 
 
 func _on_watch_zone_body_entered(body):
-	current_state = states.Walk
-	_body = body
-	target = body
+	if current_state != states.Death:
+		current_state = states.Walk
+		_body = body
+		target = body
 
 func _on_watch_zone_body_exited(body):
 	if current_state != states.Death && current_state != states.Attack:
@@ -166,5 +167,5 @@ func take_hit(value:):
 
 
 func _on_time_until_run_timeout():
-	if target == null:
+	if target == null && current_state!=states.Death:
 		current_state = states.Walk
