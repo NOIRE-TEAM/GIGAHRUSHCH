@@ -26,6 +26,7 @@ func inner_physics_process(delta):
 	
 	if player.hp <= 0:
 		#player.queue_free()
+		GlobalVariables.monsters.clear()
 		get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
 		return
 	player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)

@@ -133,15 +133,16 @@ func _on_watch_zone_body_exited(body):
 	target = null
 
 func _on_attack_zone_body_entered(body):
-	body_exited = false
-	current_state = states.Attack
+	if current_state != states.Death:
+		body_exited = false
+		current_state = states.Attack
 	
 func _on_attack_zone_body_exited(body):
 	body_exited = true
 
 
 func _on_animated_sprite_2d_animation_finished():
-	if body_exited && current_state == states.Attack:
+	if body_exited && current_state == states.Attack && current_state != states.Death:
 		attack_first_time = false
 		current_state = states.Idle
 	if current_state == states.GetHit:
