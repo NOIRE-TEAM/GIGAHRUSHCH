@@ -35,7 +35,7 @@ func inner_physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	$"../../Control/L_direction".set_text(str(direction));
 	if direction and !player.get_hitted:
-		player.velocity.x = direction * player.SPEED
+		player.velocity.x = direction * player.SPEED + player.speed_bonus
 	elif !player.get_hitted:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
 	

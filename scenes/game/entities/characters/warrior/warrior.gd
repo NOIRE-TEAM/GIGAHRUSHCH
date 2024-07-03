@@ -39,6 +39,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var damage_deal_zone = $Zones/DamageDealZone
 @onready var being_hitted_timer = $TimerWhileHitted
 
+
 func _physics_process(delta):
 	if !alive:
 		return
@@ -158,6 +159,8 @@ func _on_animated_sprite_2d_animation_finished():
 		else:
 			current_state = states.Attack
 	if current_state == states.Death:
+		if _body != null:
+			_body.gain_exp(10)
 		queue_free()
 
 

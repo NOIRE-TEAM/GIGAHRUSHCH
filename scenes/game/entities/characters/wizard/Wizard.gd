@@ -102,6 +102,8 @@ func _on_watch_zone_body_entered(body):
 	
 func _on_animated_sprite_2d_animation_finished():
 	if current_state == states.Death:
+		if _body != null:
+			_body.gain_exp(10)
 		queue_free()
 	if current_state == states.GetHit:
 		attack_zone.set_monitoring(true)
