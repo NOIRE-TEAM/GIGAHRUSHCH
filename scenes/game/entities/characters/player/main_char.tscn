@@ -81,6 +81,7 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="L_state" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.325
@@ -93,6 +94,7 @@ text = "State"
 metadata/_edit_use_anchors_ = true
 
 [node name="L_hp" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -36.0
 offset_top = -83.0
@@ -102,6 +104,7 @@ text = "HP"
 metadata/_edit_use_anchors_ = true
 
 [node name="L_direction" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -36.0
 offset_top = -63.0
@@ -111,6 +114,7 @@ text = "Direction"
 metadata/_edit_use_anchors_ = true
 
 [node name="L_velocity_x" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.05
@@ -125,6 +129,7 @@ text = "Velocity_X"
 metadata/_edit_use_anchors_ = true
 
 [node name="L_velocity_y" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.025
@@ -138,6 +143,78 @@ offset_bottom = -40.0
 text = "Velocity_Y"
 metadata/_edit_use_anchors_ = true
 
+[node name="L_level" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -186.0
+offset_top = -106.0
+offset_right = -145.0
+offset_bottom = -83.0
+text = "Level"
+
+[node name="L_exp" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -186.0
+offset_top = -83.0
+offset_right = -145.0
+offset_bottom = -60.0
+text = "Exp"
+
+[node name="L_str" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -150.0
+offset_top = -9.0
+offset_right = -109.0
+offset_bottom = 14.0
+text = "Сила
+"
+
+[node name="Btn_str" type="Button" parent="Control/L_str"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 7.0
+offset_right = 76.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 6
+text = "+"
+
+[node name="L_agil" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -185.0
+offset_top = -31.0
+offset_right = -144.0
+offset_bottom = -8.0
+text = "Ловкость
+"
+
+[node name="Btn_agil" type="Button" parent="Control/L_agil"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 6.0
+offset_right = 111.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "+"
+
+[node name="L_life" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -186.0
+offset_top = -52.0
+offset_right = -145.0
+offset_bottom = -29.0
+text = "Здоровье"
+
+[node name="Btn_life" type="Button" parent="Control/L_life"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 3.0
+offset_right = 112.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 6
+text = "+"
+
 [node name="RunSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_dubf6")
 volume_db = -6.933
@@ -149,4 +226,7 @@ one_shot = true
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack#2" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Zones/Attack#2" to="FSM/Attack#2" method="_on_attack_2_area_entered"]
+[connection signal="pressed" from="Control/L_str/Btn_str" to="." method="_on_btn_str_pressed"]
+[connection signal="pressed" from="Control/L_agil/Btn_agil" to="." method="_on_btn_agil_pressed"]
+[connection signal="pressed" from="Control/L_life/Btn_life" to="." method="_on_btn_life_pressed"]
 [connection signal="timeout" from="Timer" to="FSM/Air" method="_on_timer_timeout"]
