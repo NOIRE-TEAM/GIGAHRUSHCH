@@ -13,8 +13,10 @@ func inner_physics_process(_delta):
 	elif wizard.walk_timer.time_left == 0:
 		wizard.walk_timer.start(wizard.WALK_TIME)
 		state_machine.change_to("Walk")
-	elif
-	wizard.animation.play("idle")
+	elif wizard.hitted_by_player:
+		state_machine.change_to("Hitted")
+	else:
+		wizard.animation.play("idle")
 
 
 
