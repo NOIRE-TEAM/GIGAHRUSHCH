@@ -1,0 +1,20 @@
+extends StateWizard
+
+
+# Called when the node enters the scene tree for the first time.
+func enter(_msg: Dictionary = {}):
+	$"../../Label".set_text(name)
+	GlobalVariables.monsters.erase(self)
+	wizard.attack_zone.set_monitoring(false)
+	wizard.take_hit_area.set_monitorable(false)
+	wizard.animation.play("death")
+
+
+ #Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if wizard.Hp <= 0:
+		wizard.queue_free()
