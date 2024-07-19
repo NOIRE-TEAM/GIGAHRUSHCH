@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnu8687sm7nyw"]
+[gd_scene load_steps=8 format=3 uid="uid://cnu8687sm7nyw"]
 
 [ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/Wizard.gd" id="1_tqqiq"]
 [ext_resource type="SpriteFrames" uid="uid://bujc36wbl8l4s" path="res://scenes/game/entities/characters/wizard/new_sprite_frames.tres" id="2_8jjaw"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/TakeHitArea.gd" id="3_dj8np"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/player/fsm/FSM.gd" id="4_vlnqq"]
+[ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/fsm/wizard_idle.gd" id="5_2frou"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukcw0"]
 height = 46.0
@@ -19,9 +21,7 @@ script = ExtResource("1_tqqiq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -27)
 sprite_frames = ExtResource("2_8jjaw")
-animation = &"take_hit"
-frame = 4
-frame_progress = 1.0
+animation = &"idle"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -71,7 +71,23 @@ script = ExtResource("3_dj8np")
 shape = SubResource("CapsuleShape2D_rkrac")
 debug_color = Color(0.854902, 0.701961, 0, 0.419608)
 
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("4_vlnqq")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("5_2frou")
+
+[node name="Walk" type="Node" parent="FSM"]
+
+[node name="Attack" type="Node" parent="FSM"]
+
+[node name="Death" type="Node" parent="FSM"]
+
+[node name="Node5" type="Node" parent="FSM"]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HitZones/WatchZone" to="." method="_on_watch_zone_body_entered"]
+[connection signal="body_entered" from="HitZones/WatchZone" to="FSM/Idle" method="_on_watch_zone_body_entered"]
 [connection signal="body_exited" from="HitZones/WatchZone" to="." method="_on_watch_zone_body_exited"]
+[connection signal="body_exited" from="HitZones/WatchZone" to="FSM/Idle" method="_on_watch_zone_body_exited"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

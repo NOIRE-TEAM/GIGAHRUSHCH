@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Wizard
 
 const SPEED = 50
+const WALK_TIME = 3
 
 enum states {
 	Idle,
@@ -12,10 +13,11 @@ enum states {
 }
 
 var current_state = states.Walk
-var _body
+var target_player
 var one_fireball_instance_bool = false # для того, чтобы выпускался только 1 фаэрбол
 var direction
-var body_exited = false # вышел ли игрок из зоны поражения
+var hitted_by_player = false
+var body_exited = true # вышел ли игрок из зоны поражения
 var FireBall = preload("res://scenes/game/entities/characters/wizard/fire_ball.tscn")
 var Hp = 100
 
@@ -129,7 +131,7 @@ func _on_walk_timer_timeout():
 	
 func take_hit(value:):
 	print("Wizard take hit by %s" % value)
-	
+	hitted_by_player = true
 	Hp -= value;
 	current_state = states.GetHit
 
