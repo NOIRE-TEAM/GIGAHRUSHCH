@@ -17,4 +17,6 @@ func _process(delta):
 
 func _on_animated_sprite_2d_animation_finished():
 	if wizard.Hp <= 0:
+		wizard.get_parent().get_node("Player").gain_exp(10)
+		#wizard.player_object.gain_exp(10)
 		wizard.queue_free()

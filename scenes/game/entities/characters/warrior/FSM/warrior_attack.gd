@@ -8,13 +8,13 @@ func enter(_msg: Dictionary = {}):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func inner_physics_process(_delta):
-	print("moment_to_attack: " + str(warrior.moment_to_attack))
-	print("target_player: " + str(warrior.target_player))
-	print("body_exited: " + str(warrior.body_exited))
+	#print("moment_to_attack: " + str(warrior.moment_to_attack))
+	#print("target_player: " + str(warrior.target_player))
+	#print("body_exited: " + str(warrior.body_exited))
 	if warrior.target_player != null && !warrior.body_exited:
 		warrior.moment_to_attack = true
 		warrior.velocity.x = 0;
-		if not warrior.attack_first_time:
+		if not warrior.attack_first_time:#Чтобы анимации не меняли друг друга
 			warrior.anim_attack_num = str(randi() % 3 + 1)
 			warrior.attack_first_time = true
 			warrior.animation_attack = "attack#" + warrior.anim_attack_num
@@ -44,6 +44,7 @@ func inner_physics_process(_delta):
 
 func _on_animated_sprite_2d_animation_finished():
 	warrior.moment_to_attack = false
+	warrior.attack_first_time = false
 	if warrior.body_exited:
 		warrior.damage_deal_zone.set_monitoring(false)
 

@@ -98,7 +98,7 @@ func _on_btn_str_pressed():
 	$Control/L_agil.hide()
 	$Control/L_life.hide()
 	stats["Сила"] += 1
-	var attack_bonus = stats["Сила"] * 10
+	attack_bonus = stats["Сила"] * 10
 
 
 func _on_btn_agil_pressed():

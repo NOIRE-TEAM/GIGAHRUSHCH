@@ -5,6 +5,7 @@ extends StateWizard
 func enter(_msg: Dictionary = {}):
 	$"../../Label".set_text(name)
 	if wizard.Hp <= 0:
+		wizard.walk_timer.stop()
 		state_machine.change_to("Death")
 
 

@@ -14,7 +14,9 @@ func hit(value: int, player_pos: int):
 	if player_pos < wizard.position.x:
 		wizard.animation.set_flip_h(true)
 		wizard.attack_zone.set_scale(Vector2(-1, 1))
+		wizard.muzzle.position.x = -wizard.muzzle.position.x
 	else:
 		wizard.animation.set_flip_h(false)
 		wizard.attack_zone.set_scale(Vector2(1, 1))
+		wizard.muzzle.position.x = abs(wizard.muzzle.position.x)
 	wizard.take_hit(value)

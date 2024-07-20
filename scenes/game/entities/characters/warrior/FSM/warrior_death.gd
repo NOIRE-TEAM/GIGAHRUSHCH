@@ -18,4 +18,5 @@ func _process(delta):
 
 func _on_animated_sprite_2d_animation_finished():
 	if warrior.Hp <= 0:
+		warrior.get_parent().get_node("Player").gain_exp(10)
 		warrior.queue_free()
