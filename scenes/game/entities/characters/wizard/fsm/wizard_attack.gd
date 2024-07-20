@@ -19,6 +19,7 @@ func inner_physics_process(_delta):
 		wizard.walk_timer.start(wizard.WALK_TIME)
 		state_machine.change_to("Idle")
 	elif wizard.hitted_by_player:
+		wizard.walk_timer.stop()
 		state_machine.change_to("Hitted")
 
 func attack_char(body):
@@ -35,4 +36,5 @@ func _on_watch_zone_body_exited(body):
 
 
 func _on_animated_sprite_2d_animation_finished():
+	print("wizard.one_fireball_instance_bool: " + str(wizard.one_fireball_instance_bool))
 	wizard.one_fireball_instance_bool = false

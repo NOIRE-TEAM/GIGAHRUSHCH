@@ -17,7 +17,7 @@ func inner_physics_process(_delta):
 		warrior.walk_timer.stop()
 		state_machine.change_to("Attack")
 	elif warrior.target_player != null:
-		#warrior.walk_timer.stop()
+		warrior.walk_timer.stop()
 		state_machine.change_to("Walk")
 	elif warrior.walk_timer.time_left == 0:
 		warrior.walk_timer.start(warrior.WALK_TIME)
