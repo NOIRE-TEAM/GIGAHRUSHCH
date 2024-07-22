@@ -4,7 +4,7 @@ extends StateWarrior
 # Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
 	$"../../Label".set_text(name)
-	GlobalVariables.monsters.erase(self)
+	GlobalVariables.monsters.erase(warrior)
 	warrior.attack_zone.set_monitoring(false)
 	warrior.damage_deal_zone.set_monitoring(false)
 	$"../../Zones/TakeHitZone".set_monitoring(false)
