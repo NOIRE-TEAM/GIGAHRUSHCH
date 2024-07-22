@@ -4,7 +4,7 @@ extends StateWizard
 # Called when the node enters the scene tree for the first time.
 func enter(_msg: Dictionary = {}):
 	$"../../Label".set_text(name)
-	GlobalVariables.monsters.erase(self)
+	GlobalVariables.monsters.erase(wizard)
 	wizard.attack_zone.set_monitoring(false)
 	wizard.take_hit_area.set_monitorable(false)
 	wizard.animation.play("death")
