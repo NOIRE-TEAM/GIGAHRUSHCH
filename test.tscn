@@ -454,15 +454,15 @@ position = Vector2(69.75, 57)
 shape = SubResource("RectangleShape2D_7jdxa")
 
 [node name="Wizard" parent="." instance=ExtResource("2_yp1uv")]
-position = Vector2(100, 0)
+position = Vector2(548, 45)
 
 [node name="Slime" parent="." instance=ExtResource("1_fno4b")]
-position = Vector2(426, 72)
+position = Vector2(1101, 39)
 
 [node name="Player" parent="." instance=ExtResource("4_pp4j1")]
 
 [node name="Warrior" parent="." instance=ExtResource("5_uadln")]
-position = Vector2(628, 50)
+position = Vector2(201, 2)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_wq1a4")
