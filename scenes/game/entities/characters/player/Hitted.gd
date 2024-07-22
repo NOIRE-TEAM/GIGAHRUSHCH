@@ -25,6 +25,9 @@ func inner_physics_process(delta):
 		player.velocity.y += player.gravity * delta
 	
 	if player.hp <= 0:
+		var ws = get_parent().get_parent().get_parent()
+		ws.exit()
+		ws.unload_all()
 		#player.queue_free()
 		GlobalVariables.monsters.clear()
 		get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
