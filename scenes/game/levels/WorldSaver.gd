@@ -4,6 +4,8 @@ var placing: TileMap
 var player: CharacterBody2D
 var warriorNode: PackedScene
 var wizardNode: PackedScene
+var tile_size_x: int
+var tile_size_y: int
 
 const door = [[38, 39, 40],
 			  [41, 42, 43],
@@ -47,11 +49,11 @@ func to_tilemap(x: int, y: int, content: PackedByteArray):
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
 			var iter: int = (add_y << self.CHUNK_SIZE_Y_POW) + add_x
-			if content[iter] == 0:
+			if content[iter * 3] == 0:
 				gen_chunk(start_x, start_y)
 				return
 			else:
-				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(content[iter], 0))
+				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(content[iter * 3], 0))
 
 func from_tilemap(x: int, y: int):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
@@ -60,11 +62,21 @@ func from_tilemap(x: int, y: int):
 	for add_y in range(self.CHUNK_SIZE_Y):
 		for add_x in range(self.CHUNK_SIZE_X):
 			var tile = Vector2(start_x + add_x, start_y + add_y)
-			#var tmp = placing.get_cell_atlas_coords(0, tile).x
-			#if tmp <= 0:
-			#	print(tmp, "from at", start_x, " ", start_y, " ", x, " ", y)
 			ret.append(placing.get_cell_atlas_coords(0, tile).x)
+			ret.append(0)
+			ret.append(0)
 			placing.erase_cell(0, tile)
+	var upper_bound = start_y * tile_size_y
+	var lower_bound = (start_y + self.CHUNK_SIZE_Y) * tile_size_y
+	var left_bound = start_x * tile_size_x
+	var right_bound = (start_x + self.CHUNK_SIZE_X) * tile_size_x
+	print("boundaries: ", upper_bound, ", ", lower_bound, ", ", left_bound, ", ", right_bound)
+	for monster in GlobalVariables.monsters:
+		var monster_coords: Vector2 = monster.get_position()
+		if left_bound <= monster_coords.x and monster_coords.x < right_bound and upper_bound <= monster_coords.y and monster_coords.y < lower_bound:
+			print("kill at: ", monster_coords.x, ", ", monster_coords.y)
+			GlobalVariables.monsters.erase(monster)
+			monster.queue_free()
 	return ret
 
 func SpawnWizard(pos: Vector2):
@@ -79,13 +91,14 @@ func SpawnWarrior(pos: Vector2):
 	add_child(warrior)
 	add_monster(warrior)
 
-func DeleteAllMonsters():
+func FreezeMonsters():
 	for monster in GlobalVariables.monsters:
 		if (player.get_position() - monster.get_position()).length() > (
-				self.CHUNK_SIZE_X * placing.tile_set.tile_size.x +
-				self.CHUNK_SIZE_Y * placing.tile_set.tile_size.y):
-			GlobalVariables.monsters.erase(monster)
-			monster.queue_free()
+				self.CHUNK_SIZE_X * tile_size_x):
+			monster.pause()
+		elif (player.get_position() - monster.get_position()).length() <= (
+				self.CHUNK_SIZE_X * tile_size_x):
+			monster.unpause()
 
 func add_monster(monster: CharacterBody2D):
 	GlobalVariables.monsters.append(monster)
@@ -96,10 +109,12 @@ func _ready():
 	wizardNode = preload("res://scenes/game/entities/characters/wizard/wizard.tscn")
 	player = get_child(0)
 	placing = get_child(1)
-	self.start(GlobalVariables.CurrentWorld, placing.tile_set.tile_size.x, placing.tile_set.tile_size.y)
+	tile_size_x = placing.tile_set.tile_size.x
+	tile_size_y = placing.tile_set.tile_size.y
+	self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
 
 func _physics_process(_delta):
-	DeleteAllMonsters()
+	FreezeMonsters()
 	self.set_view_center(player.position.x, player.position.y)
 	unload_all()
 	load_all()
