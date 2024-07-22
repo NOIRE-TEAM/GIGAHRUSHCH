@@ -122,3 +122,6 @@ func take_hit(value:):
 
 #func _on_watch_zone_body_exited(body):
 	#body_exited = true;
+
+func get_id():
+	return 1
