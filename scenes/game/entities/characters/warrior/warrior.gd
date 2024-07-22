@@ -185,3 +185,6 @@ func take_hit(value:):
 #func _on_time_until_run_timeout():
 	#if target == null && current_state!=states.Death:
 		#current_state = states.Walk
+
+func get_id():
+	return 2
