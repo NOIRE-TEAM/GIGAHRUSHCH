@@ -11,7 +11,7 @@ var hitted_by_player = false
 var body_exited = true # вышел ли игрок из зоны поражения
 var FireBall = preload("res://scenes/game/entities/characters/wizard/fire_ball.tscn")
 var Hp = 100
-
+var alive = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
