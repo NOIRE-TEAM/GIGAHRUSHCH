@@ -108,7 +108,7 @@ func SpawnMonster(x: int, y: int, id: int, hp: int):
 func FreezeMonsters():
 	for monster in GlobalVariables.monsters:
 		if (player.get_position() - monster.get_position()).length() > (
-				self.CHUNK_SIZE_X * tile_size_x):
+				self.CHUNK_SIZE_X * tile_size_x * 1.5 ):
 			monster.process_mode = PROCESS_MODE_DISABLED
 		else:
 			monster.process_mode = PROCESS_MODE_INHERIT
