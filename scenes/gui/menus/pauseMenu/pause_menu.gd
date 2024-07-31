@@ -1,12 +1,12 @@
 extends Control
 
 func resume() :
-	$Settings.hide()
+	$".".hide()
 	get_tree().paused = false
 
 func pause():
 	get_tree().paused = true
-	$Settings.show()
+	$".".show()
 
 func testEsc():
 	if Input.is_action_just_pressed("escape") and !get_tree().paused:
@@ -24,7 +24,7 @@ func _process(_delta):
 	testEsc()
 	
 func _ready():
-	$Settings.hide()
+	$".".hide()
 
 
 func _on_button_pressed():
