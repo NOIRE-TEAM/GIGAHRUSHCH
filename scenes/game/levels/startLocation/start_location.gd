@@ -16,6 +16,10 @@ func _ready():
 	$Player/CameraPivot/Camera2D.limit_top = -300
 	$Player/CameraPivot/Camera2D.limit_right = 512
 
+	$AnimationPlayer.play("test_start_animation")
+	$Player.set_physics_process(false)
+	#$Test_Animation/Label.position = $Player/CameraPivot/Camera2D.get_screen_center_position()
+
 
 func _on_area_2d_body_entered(body):
 	get_tree().change_scene_to_file("res://scenes/game/levels/open_world.tscn")

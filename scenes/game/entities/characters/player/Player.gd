@@ -23,6 +23,7 @@ var exp_to_level_up = level * 10
 var audio:AudioStream 
 var speed_bonus = stats["Ловкость"] * 10
 var attack_bonus = stats["Сила"] * 10
+var is_animation_play = false
 
 @onready var tilemap = $"../TileMap"
 @onready var timer = $Timer
@@ -67,27 +68,6 @@ func gain_exp(value:int):
 func _ready():
 	$Control/L_exp.set_text("Опыт: " + str(experience))
 	$Control/L_level.set_text("Уровень: " + str(level))
-#func _physics_process(delta):
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y += gravity * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_jump") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction = Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-	#move_and_slide()
-	#animation.play()
-	
-
 
 func _on_timer_timeout():
 	tilemap.tile_set.set_physics_layer_collision_layer(1,1)
@@ -115,3 +95,9 @@ func _on_btn_life_pressed():
 	$Control/L_life.hide()
 	hp = hp + 100
 	stats["Здоровье"] += 1
+
+func flip(flag:bool):
+	animation.set_flip_h(flag)
+
+func animation_play(flag:bool):
+	is_animation_play = flag

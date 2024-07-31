@@ -22,17 +22,17 @@ func inner_physics_process(_delta):
 		
 	#if Input.is_action_just_pressed("ui_attack"):
 		#state_machine.change_to("Attack")
+	if !player.is_animation_play:
+		if Input.is_action_just_pressed("ui_attack_2") and !player.get_hitted:
+			state_machine.change_to("Attack#2")
+			#
+		player.move_and_slide()
+		if Input.is_action_just_pressed("ui_jump") and !player.get_hitted:
+			state_machine.change_to("Air", {do_jump = true})
 		
-	if Input.is_action_just_pressed("ui_attack_2") and !player.get_hitted:
-		state_machine.change_to("Attack#2")
-		#
-	player.move_and_slide()
-	if Input.is_action_just_pressed("ui_jump") and !player.get_hitted:
-		state_machine.change_to("Air", {do_jump = true})
-	
-	if (Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right")) and !player.get_hitted:
-		pass
-	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") and !player.get_hitted:
-			state_machine.change_to("Run")
+		if (Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right")) and !player.get_hitted:
+			pass
+		elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") and !player.get_hitted:
+				state_machine.change_to("Run")
 	
 	player.animation.play("idle")
