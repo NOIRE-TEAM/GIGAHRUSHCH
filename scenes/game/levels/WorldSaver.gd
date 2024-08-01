@@ -73,13 +73,16 @@ func from_tilemap(x: int, y: int):
 	var right_bound: int = (start_x + self.CHUNK_SIZE_X) * tile_size_x
 	for monster_it in range(GlobalVariables.monsters.size() - 1, -1, -1):
 		var monster = GlobalVariables.monsters[monster_it]
-		var monster_coords: Vector2i = monster.get_position()
-		if left_bound <= monster_coords.x and monster_coords.x < right_bound and upper_bound <= monster_coords.y and monster_coords.y < lower_bound:
-			var where: int = (((monster_coords.y - upper_bound) / tile_size_y) * self.CHUNK_SIZE_X + ((monster_coords.x - left_bound) / tile_size_x)) * 3
-			ret[where + 1] = monster.get_id()
-			ret[where + 2] = monster.Hp
+		if monster == null:
 			GlobalVariables.monsters.remove_at(monster_it)
-			monster.queue_free()
+		else:
+			var monster_coords: Vector2i = monster.get_position()
+			if left_bound <= monster_coords.x and monster_coords.x < right_bound and upper_bound <= monster_coords.y and monster_coords.y < lower_bound:
+				var where: int = (((monster_coords.y - upper_bound) / tile_size_y) * self.CHUNK_SIZE_X + ((monster_coords.x - left_bound) / tile_size_x)) * 3
+				ret[where + 1] = monster.get_id()
+				ret[where + 2] = monster.Hp
+				GlobalVariables.monsters.remove_at(monster_it)
+				monster.queue_free()
 	return ret
 
 func SpawnWizard(pos: Vector2, hp: int = 100):
@@ -107,11 +110,12 @@ func SpawnMonster(x: int, y: int, id: int, hp: int):
 
 func FreezeMonsters():
 	for monster in GlobalVariables.monsters:
-		if (player.get_position() - monster.get_position()).length() > (
-				self.CHUNK_SIZE_X * tile_size_x * 1.5 ):
-			monster.process_mode = PROCESS_MODE_DISABLED
-		else:
-			monster.process_mode = PROCESS_MODE_INHERIT
+		if monster != null:
+			if (player.get_position() - monster.get_position()).length() > (
+					self.CHUNK_SIZE_X * tile_size_x * 1.5 ):
+				monster.process_mode = PROCESS_MODE_DISABLED
+			else:
+				monster.process_mode = PROCESS_MODE_INHERIT
 
 func add_monster(monster):
 	GlobalVariables.monsters.append(monster)
