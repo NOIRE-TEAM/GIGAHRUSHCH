@@ -46,7 +46,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_attack_2_area_entered(area):
 	if not already_hit:
-		print(area.owner.name)
+		#print(area.owner.name)
 		if area.has_method("hit"):
 			area.hit(50 + player.attack_bonus, player.position.x)
 		already_hit = true

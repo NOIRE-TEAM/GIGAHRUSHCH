@@ -24,11 +24,12 @@ func inner_physics_process(_delta):
 
 func attack_char(body):
 	if body != null:
-		print("I see you %s" % body.name)
+		#print("I see you %s" % body.name)
 		var fireball = wizard.FireBall.instantiate()
 		fireball.set_position(wizard.muzzle.get_global_position())
 		fireball.set_target(body)
-		get_parent().add_child(fireball)
+		#print(str(get_parent().get_parent().get_parent()))
+		get_parent().get_parent().get_parent().add_child(fireball)
 
 
 func _on_watch_zone_body_exited(body):
@@ -36,5 +37,5 @@ func _on_watch_zone_body_exited(body):
 
 
 func _on_animated_sprite_2d_animation_finished():
-	print("wizard.one_fireball_instance_bool: " + str(wizard.one_fireball_instance_bool))
+	#print("wizard.one_fireball_instance_bool: " + str(wizard.one_fireball_instance_bool))
 	wizard.one_fireball_instance_bool = false

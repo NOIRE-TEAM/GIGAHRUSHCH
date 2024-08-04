@@ -23,7 +23,7 @@ height = 36.0
 
 [node name="Warrior" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 17
+collision_mask = 21
 script = ExtResource("1_2fhex")
 
 [node name="Label" type="Label" parent="."]
