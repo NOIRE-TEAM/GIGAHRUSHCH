@@ -115,7 +115,7 @@ func _ready():
 		#current_state = states.Walk
 	
 func take_hit(value:):
-	print("Wizard take hit by %s" % value)
+	#print("Wizard take hit by %s" % value)
 	hitted_by_player = true
 	Hp -= value;
 	$ProgressBar.value = Hp

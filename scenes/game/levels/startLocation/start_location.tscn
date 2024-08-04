@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://ctwryf833xgay"]
+[gd_scene load_steps=35 format=3 uid="uid://ctwryf833xgay"]
 
 [ext_resource type="PackedScene" uid="uid://co7l3sik6f6yn" path="res://scenes/game/entities/characters/player/main_char.tscn" id="1_obccu"]
 [ext_resource type="Script" path="res://scenes/game/levels/startLocation/start_location.gd" id="1_w54ht"]
 [ext_resource type="Texture2D" uid="uid://dxbbg60j8ixvj" path="res://assets/sprites/game/noire-design/tiles/floor.png" id="2_ppokl"]
+[ext_resource type="Script" path="res://scenes/game/levels/startLocation/animation.gd" id="3_lmmlx"]
 [ext_resource type="Texture2D" uid="uid://b7h3c0nqvc5ml" path="res://assets/sprites/game/noire-design/tiles/wall(beton clear).png" id="3_ryxq3"]
+[ext_resource type="Texture2D" uid="uid://xtqrn7nxqnd3" path="res://assets/audio/Sprite-0002.png" id="4_7u38c"]
 [ext_resource type="Texture2D" uid="uid://oles4534gbe1" path="res://assets/sprites/game/noire-design/tiles/wall(beton d1).png" id="4_rxmuy"]
 [ext_resource type="Texture2D" uid="uid://chvwyv1d8p8e8" path="res://assets/sprites/game/noire-design/tiles/wall(beton).png" id="5_1yifw"]
 [ext_resource type="Texture2D" uid="uid://s4uweufueiep" path="res://assets/sprites/game/noire-design/tiles/wall(d1).png" id="6_57ist"]
@@ -15,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://xq1sdtfymtf7" path="res://scenes/gui/menus/pauseMenu/pause_menu.tscn" id="12_ego2c"]
 [ext_resource type="AudioStream" uid="uid://y4v4pdfveqvr" path="res://assets/audio/sounds/gui/zvuk-pishuschey-mashinki-1.mp3" id="14_kheh4"]
 [ext_resource type="Texture2D" uid="uid://es2o3ncytrkb" path="res://assets/audio/music/Портрет гг.PNG" id="15_ho78h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnuw7"]
+size = Vector2(256, 7)
 
 [sub_resource type="Animation" id="Animation_6053c"]
 length = 0.001
@@ -113,6 +118,197 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Player:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(783, -68)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Prolog_grey/Label:visible_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Prolog_animation/Prolog_start_words:visible_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Prolog_animation/Black _prolog_start:color")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Prolog_grey:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Prolog_grey/Label:text")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Это действительно выход. Ну или вход, как написано на стене"]
+}
+
+[sub_resource type="Animation" id="Animation_whl3o"]
+resource_name = "prolog"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 17, 26.3, 29, 29.4, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1119, -72), Vector2(1139, -72), Vector2(1230, -71), Vector2(1230, -71), Vector2(1302, -71), Vector2(710, 226), Vector2(72, -23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prolog_grey/Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(12, 14, 15, 18, 20, 23, 23.6, 24, 26),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0, 0.424, 1.0, 1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prolog_animation/Prolog_start_words:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 7, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.272, 0.531, 1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Prolog_animation/Black _prolog_start:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9, 11, 27.7, 29, 30, 33),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Prolog_grey:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 12, 15, 18, 26.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 15, 17, 26.3, 30, 35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [true],
+"method": &"animation_play"
+}, {
+"args": ["Run"],
+"method": &"change_to_animation"
+}, {
+"args": ["Idle"],
+"method": &"change_to_animation"
+}, {
+"args": ["Run"],
+"method": &"change_to_animation"
+}, {
+"args": ["Idle"],
+"method": &"change_to_animation"
+}, {
+"args": [false],
+"method": &"animation_play"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Prolog_grey/Label:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 17, 23, 23.6, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Не может быть...", "Это действительно выход. Ну или вход, как написано на стене", "Это действительно выход. Ну или вход, как написано на стене", "", "А пошло оно все. Я выйду из этого места навсегда!"]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(29.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [8],
+"method": &"change_camera_left_location"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qvyj2"]
@@ -244,6 +440,7 @@ tracks/8/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b7sf"]
 _data = {
 "RESET": SubResource("Animation_6053c"),
+"prolog": SubResource("Animation_whl3o"),
 "test_start_animation": SubResource("Animation_qvyj2")
 }
 
@@ -356,14 +553,82 @@ size = Vector2(44, 57)
 [node name="StartLocation" type="Node2D"]
 script = ExtResource("1_w54ht")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1202, -39.5)
+shape = SubResource("RectangleShape2D_vnuw7")
+
+[node name="Prolog_animation" type="Node" parent="."]
+
+[node name="Black _prolog_start" type="ColorRect" parent="Prolog_animation"]
+show_behind_parent = true
+offset_left = -197.0
+offset_top = -676.0
+offset_right = 1616.0
+offset_bottom = 105.0
+color = Color(0, 0, 0, 1)
+
+[node name="Prolog_start_words" type="Label" parent="Prolog_animation"]
+offset_left = 1115.0
+offset_top = -152.0
+offset_right = 1419.0
+offset_bottom = -41.0
+text = "Есть ли выход?
+Куда он ведет?
+И нужно ли в него заходить?"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3b7sf")
 }
+script = ExtResource("3_lmmlx")
 
 [node name="Player" parent="." instance=ExtResource("1_obccu")]
-position = Vector2(72, -23)
+position = Vector2(783, -68)
 collision_mask = 3
+
+[node name="Prolog_grey" type="ColorRect" parent="."]
+visible = false
+offset_left = 1078.0
+offset_top = -135.0
+offset_right = 1280.0
+offset_bottom = -109.0
+color = Color(0.513726, 0.513726, 0.513726, 0.631373)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prolog_grey"]
+position = Vector2(20, 11.6875)
+scale = Vector2(0.119522, 0.107258)
+texture = ExtResource("15_ho78h")
+
+[node name="Label" type="Label" parent="Prolog_grey"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 1.0
+offset_right = 197.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 8
+text = "Это действительно выход. Ну или вход, как написано на стене"
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Black _prolog" type="ColorRect" parent="."]
+show_behind_parent = true
+offset_left = 796.0
+offset_top = -318.0
+offset_right = 1616.0
+offset_bottom = 104.0
+color = Color(0, 0, 0, 1)
+
+[node name="Prolog_sprite" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(1202, -106)
+texture = ExtResource("4_7u38c")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_6q38p")
@@ -392,6 +657,7 @@ visible = false
 [node name="Test_Animation" type="Node" parent="."]
 
 [node name="Black" type="ColorRect" parent="Test_Animation"]
+visible = false
 offset_left = -151.0
 offset_top = -362.0
 offset_right = 669.0
@@ -399,6 +665,7 @@ offset_bottom = 60.0
 color = Color(0, 0, 0, 1)
 
 [node name="Arrival" type="Label" parent="Test_Animation"]
+visible = false
 offset_left = 12.0
 offset_top = -210.0
 offset_right = 369.0

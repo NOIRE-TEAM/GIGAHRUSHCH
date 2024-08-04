@@ -13,7 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://eiif7gtdkty4" path="res://assets/audio/sounds/game/main_person_running.mp3" id="11_dubf6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdngt"]
-height = 46.0
+radius = 16.0
+height = 54.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(5, 6)
@@ -29,11 +30,10 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-5.5, 2)
-scale = Vector2(0.578125, 0.8125)
+position = Vector2(-5, 2)
 sprite_frames = ExtResource("2_g07h5")
-animation = &"attack#2"
-speed_scale = 2.0
+animation = &"idle"
+frame_progress = 0.998311
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 1)
@@ -49,7 +49,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/Attack#2"]
-polygon = PackedVector2Array(4, -13, 5, 3, 7, 21, 7, 21, 1, 29, 18, 30, 36, 26, 44, 2, 25, -10, 18, -12)
+polygon = PackedVector2Array(7, -19, 5, 3, 7, 21, 7, 21, 5, 35, 21, 33, 36, 26, 44, 2, 26, -12, 20, -14)
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource("3_5wey7")
@@ -144,6 +144,7 @@ text = "Velocity_Y"
 metadata/_edit_use_anchors_ = true
 
 [node name="L_level" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -186.0
 offset_top = -106.0
@@ -152,6 +153,7 @@ offset_bottom = -83.0
 text = "Level"
 
 [node name="L_exp" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -186.0
 offset_top = -83.0
