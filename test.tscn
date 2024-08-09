@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2dulyhghfums"]
+[gd_scene load_steps=13 format=3 uid="uid://2dulyhghfums"]
 
 [ext_resource type="PackedScene" uid="uid://dlov8br4qtnw5" path="res://scenes/game/entities/characters/slime/slime.tscn" id="1_fno4b"]
 [ext_resource type="Script" path="res://main_world.gd" id="1_l6yq4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://co7l3sik6f6yn" path="res://scenes/game/entities/characters/player/main_char.tscn" id="4_pp4j1"]
 [ext_resource type="PackedScene" uid="uid://0r51c4hb1hn4" path="res://scenes/game/entities/characters/warrior/warrior.tscn" id="5_uadln"]
 [ext_resource type="Texture2D" uid="uid://ct4fkqdw2xufa" path="res://assets/sprites/game/oak_woods_v1.0/oak_woods_tileset.png" id="6_yqnw1"]
+[ext_resource type="PackedScene" uid="uid://45l0shx1v6l4" path="res://scenes/game/entities/npcs/npc_dialog.tscn" id="7_vooks"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6c88i"]
 
@@ -468,3 +469,6 @@ position = Vector2(201, 2)
 tile_set = SubResource("TileSet_wq1a4")
 format = 2
 layer_0/tile_data = PackedInt32Array(327751, 458752, 13, 327752, 524288, 13, 327753, 589824, 13, 327754, 655360, 13, 327755, 720896, 13, 327756, 655360, 13, 327757, 720896, 13, 327758, 589824, 13, 327759, 655360, 13, 327760, 720896, 13, 327761, 655360, 13, 327762, 720896, 13, 327763, 589824, 13, 327764, 655360, 13, 327765, 720896, 13, 327766, 655360, 13, 327767, 720896, 13)
+
+[node name="Npc" parent="." instance=ExtResource("7_vooks")]
+position = Vector2(-224, 15)
