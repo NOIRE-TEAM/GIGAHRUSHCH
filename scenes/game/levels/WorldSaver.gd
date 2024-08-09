@@ -129,6 +129,9 @@ func _ready():
 	tile_size_x = placing.tile_set.tile_size.x
 	tile_size_y = placing.tile_set.tile_size.y
 	player.position = self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
+	GlobalVariables.animations_list = self.get_animations()
+	print("Loaded animations_list: ", GlobalVariables.animations_list)
+	GlobalVariables.animations_list["Чё за хуйня?"] = 228
 
 func _physics_process(_delta):
 	FreezeMonsters()
@@ -166,5 +169,6 @@ func unload_all():
 func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
-			self.exit(player.position)
+			self.exit(player.position, GlobalVariables.animations_list)
+			print("Saved animations_list: ", GlobalVariables.animations_list)
 			unload_all()
