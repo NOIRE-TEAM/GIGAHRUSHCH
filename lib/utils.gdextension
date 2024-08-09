@@ -1,10 +1,10 @@
 [configuration]
 entry_symbol = "gdext_rust_init"
-compatibility_minimum = 4.1
+compatibility_minimum = 4.2
 reloadable = true
 
 [libraries]
-windows.debug.x86_64 =   "res://lib/my_test_gdext.dll"
-windows.release.x86_64 = "res://lib/my_test_gdext.dll"
+windows.debug.x86_64 =   "res://lib/utils.dll"
+windows.release.x86_64 = "res://lib/utils.dll"
 macos.debug =            "res://lib/libmy_test_gdext.dylib"
 macos.release =          "res://lib/libmy_test_gdext.dylib"
