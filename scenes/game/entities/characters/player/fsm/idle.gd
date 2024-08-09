@@ -9,7 +9,7 @@ func inner_physics_process(_delta):
 	$"../../Control/L_velocity_x".set_text(str(player.velocity.x))
 	$"../../Control/L_velocity_y".set_text(str(player.velocity.y))
 	
-	player.animation.set_speed_scale(2)
+	#player.animation.set_speed_scale(2)
 	if player.get_hitted:
 		state_machine.change_to("Hitted")
 	if Input.is_action_just_pressed("ui_down") and !player.get_hitted:

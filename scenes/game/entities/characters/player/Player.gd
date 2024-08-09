@@ -41,7 +41,7 @@ func transform_to_string() -> String:
 
 func hitted(value:int, coordinates:float):
 	if !get_hitted:
-		print("Player is hitted")
+		#print("Player is hitted")
 		hp -= value
 		get_hitted = true
 		enemy_coordinates = coordinates
@@ -101,3 +101,7 @@ func flip(flag:bool):
 
 func animation_play(flag:bool):
 	is_animation_play = flag
+
+func change_to_animation(anim:String):
+	#print(str(get_child(4)))
+	get_child(4).change_to(anim)

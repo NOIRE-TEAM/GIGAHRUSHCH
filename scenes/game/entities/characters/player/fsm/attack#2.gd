@@ -7,7 +7,7 @@ func enter(_msg: Dictionary={}):
 	$"../../Control/L_hp".set_text(str(player.hp))
 	var audio:AudioStream = preload("res://assets/audio/sounds/game/main_char_attack.mp3")
 	player.run_sound.set_stream(audio)
-	player.animation.set_speed_scale(4)
+	#player.animation.set_speed_scale(4)
 	already_hit = false
 	$"../../Control/L_state".set_text(name)
 	if player.animation.is_flipped_h():
@@ -32,9 +32,9 @@ func inner_physics_process(_delta):
 	if player.get_hitted:
 		state_machine.change_to("Hitted")
 
-	if player.animation.get_frame() == 5:
+	if player.animation.get_frame() == 4:
 		player.attack_2_zone.set_monitoring(true)
-	elif player.animation.get_frame() == 7:
+	elif player.animation.get_frame() == 5:
 		player.attack_2_zone.set_monitoring(false)
 
 	player.velocity.x = 0
@@ -55,7 +55,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_attack_2_area_entered(area):
 	if not already_hit:
-		print(area.owner.name)
+		#print(area.owner.name)
 		if area.has_method("hit"):
 			area.hit(player.ATTACK_2_POWER + player.attack_bonus, player.position.x)
 		already_hit = true

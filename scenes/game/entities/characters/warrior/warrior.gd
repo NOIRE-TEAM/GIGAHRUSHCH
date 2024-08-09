@@ -176,7 +176,7 @@ func take_hit(value:):
 	being_hitted_timer.wait_time = 1
 	being_hitted_timer.start()
 	hitted_by_player = true
-	print("Warrior take hit by %s" % value)
+	#print("Warrior take hit by %s" % value)
 	Hp -= value;
 	$ProgressBar.value = Hp
 	#current_state = states.GetHit

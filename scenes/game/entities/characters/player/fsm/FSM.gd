@@ -23,7 +23,7 @@ func _physics_process(delta):
 	
 func change_to(target_state: String, msg: Dictionary = {}):
 	if not has_node(target_state):
-		print("Trying get wrong state: " + target_state)
+		#print("Trying get wrong state: " + target_state)
 		return
 	state.exit()
 	state = get_node(target_state)

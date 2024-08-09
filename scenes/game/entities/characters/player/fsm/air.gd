@@ -6,7 +6,7 @@ func enter(msg: Dictionary = {}):
 	$"../../Control/L_hp".set_text(str(player.hp))
 	player.audio = preload("res://assets/audio/sounds/game/main_char_jump.mp3")
 	player.run_sound.set_stream(player.audio)
-	player.animation.set_speed_scale(2)
+	#player.animation.set_speed_scale(2)
 	if msg.has("do_jump"):
 		is_do_jump = true
 		player.velocity.y = player.JUMP_VELOCITY
@@ -72,15 +72,15 @@ func inner_physics_process(delta):
 		player.run_sound.set_stream(player.audio)
 		player.run_sound.play()
 		if player.velocity.x == 0 and !player.get_hitted:
-			print("Floor 1")
+			#print("Floor 1")
 			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 			state_machine.change_to("Idle")
 		else:
-			print("Floor 1")
+			#print("Floor 1")
 			player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
 			state_machine.change_to("Run")
 
 
 func _on_timer_timeout():
-	print("Timeout 1")
+	#print("Timeout 1")
 	player.tilemap.tile_set.set_physics_layer_collision_layer(1,1)
