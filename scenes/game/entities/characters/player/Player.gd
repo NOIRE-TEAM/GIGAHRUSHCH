@@ -13,21 +13,23 @@ signal u_turn
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hp = 1000
+var max_hp = 1000
 var giga_class: String
 var get_hitted = false
 var enemy_coordinates = 0
-var stats = {"Сила":1, "Ловкость":1, "Здоровье":1}
+var stats = {"Strength":1, "Agility":1, "Health":1}
 var experience = 0
 var level = 1
 var exp_to_level_up = level * 10
 var audio:AudioStream 
-var speed_bonus = stats["Ловкость"] * 10
-var attack_bonus = stats["Сила"] * 10
+var speed_bonus = stats["Agility"] * 10
+var attack_bonus = stats["Strength"] * 10
 var is_animation_play = false
 
 @onready var tilemap = $"../TileMap"
 @onready var timer = $Timer
 @onready var run_sound = $RunSound
+@onready var dialogue_finder = $Zones/DialogueFinder
 
 func change_parametrs_hp(health: int):
 	hp = health;
@@ -52,9 +54,9 @@ func gain_exp(value:int):
 		level += 1
 		experience = experience - exp_to_level_up
 		exp_to_level_up = level * 10
-		$Control/L_str.set_text("Сила: " + str(stats["Сила"]))
-		$Control/L_agil.set_text("Ловкость: " + str(stats["Ловкость"]))
-		$Control/L_life.set_text("Здоровье: " + str(stats["Здоровье"]))
+		$Control/L_str.set_text("Strength: " + str(stats["Strength"]))
+		$Control/L_agil.set_text("Agility: " + str(stats["Agility"]))
+		$Control/L_life.set_text("Health: " + str(stats["Health"]))
 		$Control/L_str.show()
 		$Control/L_agil.show()
 		$Control/L_life.show()
@@ -77,24 +79,24 @@ func _on_btn_str_pressed():
 	$Control/L_str.hide()
 	$Control/L_agil.hide()
 	$Control/L_life.hide()
-	stats["Сила"] += 1
-	attack_bonus = stats["Сила"] * 10
+	stats["Strength"] += 1
+	attack_bonus = stats["Strength"] * 10
 
 
 func _on_btn_agil_pressed():
 	$Control/L_str.hide()
 	$Control/L_agil.hide()
 	$Control/L_life.hide()
-	stats["Ловкость"] += 1
-	speed_bonus = stats["Ловкость"] * 10
+	stats["Agility"] += 1
+	speed_bonus = stats["Agility"] * 10
 
 
 func _on_btn_life_pressed():
 	$Control/L_str.hide()
 	$Control/L_agil.hide()
 	$Control/L_life.hide()
-	hp = hp + 100
-	stats["Здоровье"] += 1
+	max_hp = max_hp + 100
+	stats["Health"] += 1
 
 func flip(flag:bool):
 	animation.set_flip_h(flag)
@@ -105,3 +107,10 @@ func animation_play(flag:bool):
 func change_to_animation(anim:String):
 	#print(str(get_child(4)))
 	get_child(4).change_to(anim)
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		var dialogues = dialogue_finder.get_overlapping_areas()
+		if dialogues.size() > 0:
+			dialogues[0].action()
+			return
