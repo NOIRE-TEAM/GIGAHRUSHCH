@@ -128,11 +128,11 @@ func _ready():
 	placing = get_child(1)
 	tile_size_x = placing.tile_set.tile_size.x
 	tile_size_y = placing.tile_set.tile_size.y
-	self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
+	player.position = self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
 
 func _physics_process(_delta):
 	FreezeMonsters()
-	self.set_view_center(player.position.x, player.position.y)
+	self.set_view_center(player.position.x, player.position.y, false)
 	unload_all()
 	load_all()
 	var tile: Vector2 = placing.local_to_map(placing.get_global_mouse_position())
@@ -166,5 +166,5 @@ func unload_all():
 func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
-			self.exit()
+			self.exit(player.position)
 			unload_all()
