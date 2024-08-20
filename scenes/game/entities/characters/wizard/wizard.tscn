@@ -11,11 +11,12 @@
 [ext_resource type="Script" path="res://scenes/game/entities/characters/wizard/fsm/wizard_hitted.gd" id="9_bxvn1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukcw0"]
-height = 46.0
+radius = 19.0
+height = 52.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkrac"]
-radius = 16.0
-height = 50.0
+radius = 25.0
+height = 54.0
 
 [node name="Wizard" type="CharacterBody2D"]
 collision_layer = 4
@@ -23,9 +24,8 @@ collision_mask = 21
 script = ExtResource("1_tqqiq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -27)
 sprite_frames = ExtResource("2_8jjaw")
-animation = &"take_hit"
+animation = &"attack"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -55,10 +55,10 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitZones/WatchZone"]
-polygon = PackedVector2Array(37, 17, 279, 19, 344, -53, 285, -109, 36, -34)
+polygon = PackedVector2Array(37, 17, 166, 21, 145, -41, 88, -35, 35, -24)
 
 [node name="Mazzle" type="Marker2D" parent="."]
-position = Vector2(22, -21)
+position = Vector2(25, -9)
 
 [node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0

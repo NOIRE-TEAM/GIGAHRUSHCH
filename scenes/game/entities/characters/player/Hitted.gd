@@ -5,15 +5,16 @@ var in_air = false
 # Called when the node enters the scene tree for the first time.
 func enter(msg: Dictionary = {}):
 	$"../../Control/L_hp".set_text(str(player.hp))
-	player.animation.set_speed_scale(2)
+	#player.animation.set_speed_scale(2)
+	$"../../AnimationPlayer".play("hitted")
 	if msg.has("in_air"):
 		in_air = true
-	if player.enemy_coordinates > player.position.x:
-		player.velocity.x = player.velocity.x -300
-	else:
-		player.velocity.x = player.velocity.x + 300
+	player.get_hitted = false
+	#if player.enemy_coordinates > player.position.x:
+		#player.velocity.x = player.velocity.x -300
+	#else:
+		#player.velocity.x = player.velocity.x + 300
 	$"../../Control/L_state".set_text(name)
-	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,15 +33,24 @@ func inner_physics_process(delta):
 		GlobalVariables.monsters.clear()
 		get_tree().change_scene_to_file("res://scenes/game/levels/startLocation/start_location.tscn")
 		return
-	player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
-
-	player.move_and_slide()
-	
-	
-	if player.velocity.x == 0:
-		player.get_hitted = false
-		
-		
+	#player.velocity.x = move_toward(player.velocity.x, 0, player.RUN_INERTION)
+	#
+	#
+	#if player.velocity.x == 0:
+		#player.get_hitted = false
+		#
+		#
+	if player.animation.get_animation() == "attack":
+		if player.animation.get_frame() == 4:
+			player.attack_1_zone.set_monitoring(true)
+		elif player.animation.get_frame() == 5:
+			player.attack_1_zone.set_monitoring(false)
+	elif player.animation.get_animation() == "attack#2":
+		if player.animation.get_frame() == 7:
+			player.attack_2_zone.set_monitoring(true)
+		elif player.animation.get_frame() == 8:
+			player.attack_2_zone.set_monitoring(false)
+	else:
 		if not player.is_on_floor() and !player.get_hitted:
 			state_machine.change_to("Air")	
 		elif Input.is_action_just_pressed("ui_attack_2") and !player.get_hitted:

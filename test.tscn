@@ -461,9 +461,7 @@ position = Vector2(548, 45)
 position = Vector2(1101, 39)
 
 [node name="Player" parent="." instance=ExtResource("4_pp4j1")]
-
-[node name="Warrior" parent="." instance=ExtResource("5_uadln")]
-position = Vector2(201, 2)
+position = Vector2(5, 14)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_wq1a4")
@@ -472,3 +470,6 @@ layer_0/tile_data = PackedInt32Array(327751, 458752, 13, 327752, 524288, 13, 327
 
 [node name="Npc" parent="." instance=ExtResource("7_vooks")]
 position = Vector2(-224, 15)
+
+[node name="Warrior" parent="." instance=ExtResource("5_uadln")]
+position = Vector2(257, 12)

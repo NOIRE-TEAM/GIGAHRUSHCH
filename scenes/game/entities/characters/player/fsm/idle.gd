@@ -3,13 +3,14 @@ extends StatePlayer
 func enter(_msg: Dictionary = {}):
 	$"../../Control/L_hp".set_text(str(player.hp))
 	player.velocity = Vector2.ZERO
+	#player.animation.set_speed_scale(1)
 	$"../../Control/L_state".set_text(name)
 	
 func inner_physics_process(_delta):
 	$"../../Control/L_velocity_x".set_text(str(player.velocity.x))
 	$"../../Control/L_velocity_y".set_text(str(player.velocity.y))
 	
-	#player.animation.set_speed_scale(2)
+	player.animation.set_speed_scale(1)
 	if player.get_hitted:
 		state_machine.change_to("Hitted")
 	if Input.is_action_just_pressed("ui_down") and !player.get_hitted:
@@ -18,11 +19,14 @@ func inner_physics_process(_delta):
 		player.timer.start(player.time_for_time)
 	if not player.is_on_floor():
 		state_machine.change_to("Air")
-		#
-		
-	#if Input.is_action_just_pressed("ui_attack"):
-		#state_machine.change_to("Attack")
+
 	if !player.is_animation_play:
+		if Input.is_action_just_pressed("ui_attack"):
+			state_machine.change_to("Attack")
+		
+		if Input.is_action_just_pressed("ui_roll"):
+			state_machine.change_to("Roll")
+		
 		if Input.is_action_just_pressed("ui_attack_2") and !player.get_hitted:
 			state_machine.change_to("Attack#2")
 			#

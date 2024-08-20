@@ -28,4 +28,4 @@ func change_to(target_state: String, msg: Dictionary = {}):
 	state.exit()
 	state = get_node(target_state)
 	state.enter(msg)
-	print("Current state: " + state.name)
+	#print("Current state: " + state.name)

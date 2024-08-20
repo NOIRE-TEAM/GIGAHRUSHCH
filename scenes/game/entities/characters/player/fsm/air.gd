@@ -6,7 +6,7 @@ func enter(msg: Dictionary = {}):
 	$"../../Control/L_hp".set_text(str(player.hp))
 	player.audio = preload("res://assets/audio/sounds/game/main_char_jump.mp3")
 	player.run_sound.set_stream(player.audio)
-	#player.animation.set_speed_scale(2)
+	player.animation.set_speed_scale(1)
 	if msg.has("do_jump"):
 		is_do_jump = true
 		player.velocity.y = player.JUMP_VELOCITY

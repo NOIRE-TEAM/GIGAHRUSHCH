@@ -47,7 +47,7 @@ func _on_watch_zone_body_exited(body):
 	wizard.body_exited = true
 
 
-func _on_walk_timer_timeoudt():
+func _on_walk_timer_timeout():
 	if wizard.direction >= 0:
 		wizard.direction = -1
 	else:

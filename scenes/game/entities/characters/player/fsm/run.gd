@@ -4,7 +4,7 @@ func enter(_msg: Dictionary = {}):
 	$"../../Control/L_hp".set_text(str(player.hp))
 	player.audio = preload("res://assets/audio/sounds/game/main_person_running.mp3")
 	player.run_sound.set_stream(player.audio)
-	#player.animation.set_speed_scale(2)
+	player.animation.set_speed_scale(1)
 	$"../../Control/L_state".set_text(name)
 	pass
 	
@@ -24,6 +24,10 @@ func inner_physics_process(delta):
 		if not player.is_on_floor():
 			player.run_sound.stop()
 			state_machine.change_to("Air")
+		
+		if Input.is_action_just_pressed("ui_attack") and !player.get_hitted:
+			player.run_sound.stop()
+			state_machine.change_to("Attack")
 			
 		if Input.is_action_just_pressed("ui_attack_2") and !player.get_hitted:
 			player.run_sound.stop()

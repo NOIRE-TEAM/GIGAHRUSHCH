@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 100
+var speed = 150
 var target:Node2D
 var is_explode = false
 var already_hit:bool
@@ -12,7 +12,7 @@ var attack_power = 35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	already_hit = false
-	look_at(target.get_position())
+	#look_at(target.get_position())
 	animation.play("move")
 
 
@@ -24,14 +24,18 @@ func _physics_process(delta: float):
 func set_target(_body):
 	target = _body
 
-func explode():
+func hit_wall():
 	hitboxe.set_deferred("monitoring",false)
 	is_explode = true
-	animation.play("explode")
+	animation.play("hit_wall")
 	
+func hit_player():
+	hitboxe.set_deferred("monitoring",false)
+	is_explode = true
+	animation.play("hit_player")
 
 func _on_timer_timeout():
-	explode()
+	hit_wall()
 
 
 func _on_animated_sprite_2d_animation_finished():
@@ -43,4 +47,7 @@ func _on_hitboxe_body_entered(body):
 		if body.has_method("hitted"):
 			body.hitted(attack_power, position.x)
 		already_hit = true
-	explode()
+	if body == target:
+		hit_player()
+	else:
+		hit_wall()
