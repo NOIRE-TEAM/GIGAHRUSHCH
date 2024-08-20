@@ -6,6 +6,7 @@ var warriorNode: PackedScene
 var wizardNode: PackedScene
 var tile_size_x: int
 var tile_size_y: int
+var smth_saved
 
 const door = [[38, 39, 40],
 			  [41, 42, 43],
@@ -131,6 +132,31 @@ func _ready():
 	player.position = self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
 	GlobalVariables.animations_list = self.get_animations()
 	print("Loaded animations_list: ", GlobalVariables.animations_list)
+	smth_saved = self.load_by("Пример лютой еболы")
+	print("Loaded example: ", smth_saved)
+	if !smth_saved:
+		smth_saved = {
+			"glossary": {
+				"title": "example glossary",
+				"GlossDiv": {
+					"title": "S",
+					"GlossList": {
+						"GlossEntry": {
+							"ID": "SGML",
+							"SortAs": "SGML",
+							"GlossTerm": "Standard Generalized Markup Language",
+							"Acronym": "SGML",
+							"Abbrev": "ISO 8879:1986",
+							"GlossDef": {
+								"para": "A meta-markup language, used to create markup languages such as DocBook.",
+								"GlossSeeAlso": ["GML", "XML"]
+							},
+							"GlossSee": "markup"
+						}
+					}
+				}
+			}
+		}
 	GlobalVariables.animations_list["Чё за хуйня?"] = 228
 
 func _physics_process(_delta):
@@ -169,6 +195,8 @@ func unload_all():
 func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
+			self.save_as("Пример лютой еболы", smth_saved)
+			print("Saved example: ", smth_saved)
 			self.exit(player.position, GlobalVariables.animations_list)
 			print("Saved animations_list: ", GlobalVariables.animations_list)
 			unload_all()
