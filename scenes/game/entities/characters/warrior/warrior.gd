@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Warrior
 
-const SPEED = 75
+const SPEED = 40
 const WALK_TIME = 2
 const ATTACK_POWER = 20
 

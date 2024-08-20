@@ -10,16 +10,15 @@
 [ext_resource type="Script" path="res://scenes/game/entities/characters/warrior/FSM/warrior_attack.gd" id="7_2qmqf"]
 [ext_resource type="Script" path="res://scenes/game/entities/characters/warrior/FSM/warrior_death.gd" id="9_6r17j"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fntu"]
-radius = 13.0
-height = 36.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wridv"]
+size = Vector2(28, 38.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wibek"]
-size = Vector2(241, 51)
+size = Vector2(240.5, 42.25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1paua"]
-radius = 13.0
-height = 36.0
+radius = 17.0
+height = 44.0
 
 [node name="Warrior" type="CharacterBody2D"]
 collision_layer = 4
@@ -53,15 +52,13 @@ text = "Label3"
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
-scale = Vector2(0.75, 0.585938)
+position = Vector2(0, -9.53674e-07)
 sprite_frames = ExtResource("1_udmrn")
-animation = &"take_hit"
-speed_scale = 1.5
+animation = &"attack#1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CapsuleShape2D_1fntu")
+position = Vector2(0, -0.125)
+shape = SubResource("RectangleShape2D_wridv")
 
 [node name="Zones" type="Node2D" parent="."]
 
@@ -72,7 +69,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/WatchZone"]
-position = Vector2(0, -8)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_wibek")
 debug_color = Color(0.670588, 0.509804, 0, 0.419608)
 
@@ -82,7 +79,8 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/AttackZone"]
-polygon = PackedVector2Array(7, 27, 21, 25, 39, 13, 40, -7, 31, -20, 16, -28, -1, -29, -12, -29, -1, -14, 6, -2, 6, 17, -1, 25)
+position = Vector2(3, 5)
+polygon = PackedVector2Array(14, 11, 26, 11, 27, 1, 23, -14, 18, -17, 11, -20, 7, -22, 1, -24, -1, -25, 4, -2, 4, 6, -1, 15)
 
 [node name="DamageDealZone" type="Area2D" parent="Zones"]
 collision_layer = 8
@@ -91,7 +89,8 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Zones/DamageDealZone"]
-polygon = PackedVector2Array(-12, -29, 6, -2, 6, 16, -1, 24, 7, 26, 21, 25, 41, 13, 40, -9, 32, -22, 16, -28)
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(5, -11, 6, -2, 3, 21, 13, 18, 18, 17, 30, 17, 31, 7, 27, -8, 18, -13, 3, -19)
 
 [node name="TakeHitZone" type="Area2D" parent="Zones"]
 collision_layer = 8
@@ -100,7 +99,6 @@ monitoring = false
 script = ExtResource("3_gymtf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/TakeHitZone"]
-position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_1paua")
 debug_color = Color(0, 0.552941, 0.909804, 0.419608)
 

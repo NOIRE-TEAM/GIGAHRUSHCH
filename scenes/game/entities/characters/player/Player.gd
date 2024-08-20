@@ -5,22 +5,23 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const RUN_INERTION = 30.0
 const ATTACK_INERTION = 10
-const ATTACK_2_POWER = 30
+const ATTACK_1_POWER = 30
+const ATTACK_2_POWER = 70
 const time_for_time = 0.35
 
 signal u_turn
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var hp = 1000
-var max_hp = 1000
+var hp = 1000 #SAVE
+var max_hp = 1000 #SAVE
 var giga_class: String
 var get_hitted = false
 var enemy_coordinates = 0
-var stats = {"Strength":1, "Agility":1, "Health":1}
-var experience = 0
-var level = 1
-var exp_to_level_up = level * 10
+var stats = {"Strength":1, "Agility":1, "Health":1} #SAVE
+var experience = 0 #SAVE
+var level = 1 #SAVE
+var exp_to_level_up = level * 10 #SAVE
 var audio:AudioStream 
 var speed_bonus = stats["Agility"] * 10
 var attack_bonus = stats["Strength"] * 10
@@ -42,7 +43,7 @@ func transform_to_string() -> String:
 	return stroke
 
 func hitted(value:int, coordinates:float):
-	if !get_hitted:
+	if !get_hitted && !$AnimationPlayer.is_playing():
 		#print("Player is hitted")
 		hp -= value
 		get_hitted = true
@@ -54,9 +55,9 @@ func gain_exp(value:int):
 		level += 1
 		experience = experience - exp_to_level_up
 		exp_to_level_up = level * 10
-		$Control/L_str.set_text("Strength: " + str(stats["Strength"]))
-		$Control/L_agil.set_text("Agility: " + str(stats["Agility"]))
-		$Control/L_life.set_text("Health: " + str(stats["Health"]))
+		$Control/L_str.set_text("Сила: " + str(stats["Strength"]))
+		$Control/L_agil.set_text("Ловкость: " + str(stats["Agility"]))
+		$Control/L_life.set_text("Здоровье: " + str(stats["Health"]))
 		$Control/L_str.show()
 		$Control/L_agil.show()
 		$Control/L_life.show()
@@ -65,6 +66,7 @@ func gain_exp(value:int):
 
 @onready var animation = $AnimatedSprite2D
 #@onready var zones = $Zones
+@onready var attack_1_zone = $"Zones/Attack#1"
 @onready var attack_2_zone = $"Zones/Attack#2"
 
 func _ready():
@@ -114,3 +116,4 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if dialogues.size() > 0:
 			dialogues[0].action()
 			return
+

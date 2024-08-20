@@ -21,19 +21,19 @@ func inner_physics_process(_delta):
 		warrior.animation.play(warrior.animation_attack)
 		if warrior.anim_attack_num == "1":
 			#print(animation_attack + str(animation.get_frame()))
-			if warrior.animation.get_frame() == 4:
+			if warrior.animation.get_frame() == 3:
 				warrior.damage_deal_zone.set_monitoring(true)
 			elif warrior.animation.get_frame() == 5:
 				warrior.damage_deal_zone.set_monitoring(false)
 		elif warrior.anim_attack_num == "2":
-			if warrior.animation.get_frame() == 2:
+			if warrior.animation.get_frame() == 3:
 				warrior.damage_deal_zone.set_monitoring(true)
-			elif warrior.animation.get_frame() == 3:
+			elif warrior.animation.get_frame() == 5:
 				warrior.damage_deal_zone.set_monitoring(false)
 		elif warrior.anim_attack_num == "3":
 			if warrior.animation.get_frame() == 3:
 				warrior.damage_deal_zone.set_monitoring(true)
-			elif warrior.animation.get_frame() == 4:
+			elif warrior.animation.get_frame() == 5:
 				warrior.damage_deal_zone.set_monitoring(false)
 				
 	if warrior.body_exited && !warrior.moment_to_attack:
