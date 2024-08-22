@@ -132,12 +132,15 @@ func _ready():
 	player.position = self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
 	GlobalVariables.animations_list = self.get_animations()
 	print("Loaded animations_list: ", GlobalVariables.animations_list)
+	# Загрузка сложного объекта из файла
 	smth_saved = self.load_by("Пример лютой еболы")
+	# Отладочный вывод (содержания)
 	print("Loaded example: ", smth_saved)
+	# При первом запуске по ключу ничего не хранится, очевидно
 	if !smth_saved:
 		smth_saved = {
 			"glossary": {
-				"title": "example glossary",
+				"title": 228,
 				"GlossDiv": {
 					"title": "S",
 					"GlossList": {
@@ -195,8 +198,11 @@ func unload_all():
 func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
+			# Сохранение сложного объекта по ключу
 			self.save_as("Пример лютой еболы", smth_saved)
+			# Отладочный вывод (проверка содержания и типа данных)
 			print("Saved example: ", smth_saved)
+			print("Type of mem: ", typeof(smth_saved["glossary"]["title"]))
 			self.exit(player.position, GlobalVariables.animations_list)
 			print("Saved animations_list: ", GlobalVariables.animations_list)
 			unload_all()
