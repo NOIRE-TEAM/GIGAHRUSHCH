@@ -1,26 +1,30 @@
 extends WorldSaver
 
-var placing: TileMap
-var player: CharacterBody2D
-var warriorNode: PackedScene
-var wizardNode: PackedScene
-var tile_size_x: int
-var tile_size_y: int
+@onready var placing: TileMap = get_child(1)
+@onready var player: CharacterBody2D = get_child(0)
+@onready var warriorNode: PackedScene = preload("res://scenes/game/entities/characters/warrior/warrior.tscn")
+@onready var wizardNode: PackedScene = preload("res://scenes/game/entities/characters/wizard/wizard.tscn")
+@onready var tile_size_x: int = placing.tile_set.tile_size.x
+@onready var tile_size_y: int = placing.tile_set.tile_size.y
 var smth_saved
 
-const door = [[38, 39, 40],
-			  [41, 42, 43],
-			  [44, 45, 46],
-			  [47, 48, 49]]
+const door = [
+	[38, 39, 40],
+	[41, 42, 43],
+	[44, 45, 46],
+	[47, 48, 49]
+]
 
-const stairs = [[ 3, 13, 16, 29,  3,  3,  3,  4,  5,  2,  2, 21],
-				[ 3,  3,  3, 13, 16, 29,  5,  2,  2,  2,  2, 21],
-				[ 3,  3,  3,  4,  5, 34, 35, 30, 12, 12, 12, 21],
-				[ 3,  4,  5,  2,  2,  8,  9, 33,  7, 11, 11, 23],
-				[ 2,  2,  2,  8,  9,  6,  7, 10,  3,  3,  3, 21],
-				[ 2,  8,  9,  6,  7, 10,  3,  3,  3,  3,  3, 21],
-				[ 9,  6,  7, 10,  3,  3,  3,  3,  3,  3,  3, 21],
-				[16, 37,  3,  3,  3,  3,  3,  3,  3,  3,  3, 21]]
+const stairs = [
+	[ 3, 13, 16, 29,  3,  3,  3,  4,  5,  2,  2, 21],
+	[ 3,  3,  3, 13, 16, 29,  5,  2,  2,  2,  2, 21],
+	[ 3,  3,  3,  4,  5, 34, 35, 30, 12, 12, 12, 21],
+	[ 3,  4,  5,  2,  2,  8,  9, 33,  7, 11, 11, 23],
+	[ 2,  2,  2,  8,  9,  6,  7, 10,  3,  3,  3, 21],
+	[ 2,  8,  9,  6,  7, 10,  3,  3,  3,  3,  3, 21],
+	[ 9,  6,  7, 10,  3,  3,  3,  3,  3,  3,  3, 21],
+	[16, 37,  3,  3,  3,  3,  3,  3,  3,  3,  3, 21]
+]
 
 func gen_chunk(start_x: int, start_y: int):
 	for add_y in range(self.CHUNK_SIZE_Y):
@@ -36,9 +40,9 @@ func gen_chunk(start_x: int, start_y: int):
 			elif (add_y_8 == 6):
 				placing.set_cell(0, where, 0, Vector2i(12, 0))
 				if (add_x == self.CHUNK_SIZE_X / 3):
-					SpawnWizard(where * tile_size_x)
+					spawn(wizardNode, where * tile_size_x)
 				elif (add_x == self.CHUNK_SIZE_X - self.CHUNK_SIZE_X / 3):
-					SpawnWarrior(where * tile_size_x)
+					spawn(warriorNode, where * tile_size_x)
 			elif (add_y_8 == 7):
 				placing.set_cell(0, where, 0, Vector2i(11, 0))
 			else:
@@ -55,7 +59,7 @@ func to_tilemap(x: int, y: int, content: PackedByteArray):
 				return
 			else:
 				placing.set_cell(0, Vector2(start_x + add_x, start_y + add_y), 0, Vector2i(content[iter * 3], 0))
-				SpawnMonster(start_x + add_x, start_y + add_y, content[iter * 3 + 1], content[iter * 3 + 2])
+				spawn_monster(start_x + add_x, start_y + add_y, content[iter * 3 + 1], content[iter * 3 + 2])
 
 func from_tilemap(x: int, y: int):
 	var start_x: int = (x << self.CHUNK_SIZE_X_POW) - 1
@@ -86,30 +90,25 @@ func from_tilemap(x: int, y: int):
 				monster.queue_free()
 	return ret
 
-func SpawnWizard(pos: Vector2, hp: int = 100):
-	var mage = wizardNode.instantiate()
-	mage.set_position(pos)
-	mage.Hp = hp
-	add_child(mage)
-	add_monster(mage)
-	
-func SpawnWarrior(pos: Vector2, hp: int = 100):
-	var warrior = warriorNode.instantiate()
-	warrior.set_position(pos)
-	warrior.Hp = hp
-	add_child(warrior)
-	add_monster(warrior)
+func spawn(who: PackedScene, pos: Vector2, hp: int = 100):
+	var instance = who.instantiate()
+	instance.set_position(pos)
+	instance.Hp = hp
+	add_child(instance)
+	GlobalVariables.monsters.append(instance)
 
-func SpawnMonster(x: int, y: int, id: int, hp: int):
+func spawn_monster(x: int, y: int, id: int, hp: int):
+	var monster: PackedScene
 	match id:
 		1:
-			SpawnWizard(Vector2(x + 0.2, y + 0.2) * tile_size_x, hp)
+			monster = wizardNode
 		2:
-			SpawnWarrior(Vector2(x + 0.2, y + 0.2) * tile_size_x, hp)
+			monster = warriorNode
 		_:
-			pass
+			return
+	spawn(monster, Vector2(x + 0.2, y + 0.2) * tile_size_x, hp)
 
-func FreezeMonsters():
+func freeze_monsters():
 	for monster in GlobalVariables.monsters:
 		if monster != null:
 			if (player.get_position() - monster.get_position()).length() > (
@@ -118,52 +117,28 @@ func FreezeMonsters():
 			else:
 				monster.process_mode = PROCESS_MODE_INHERIT
 
-func add_monster(monster):
-	GlobalVariables.monsters.append(monster)
-
 func _ready():
 	$"../AudioStreamPlayer".play()
-	warriorNode = preload("res://scenes/game/entities/characters/warrior/warrior.tscn")
-	wizardNode = preload("res://scenes/game/entities/characters/wizard/wizard.tscn")
-	player = get_child(0)
-	placing = get_child(1)
-	tile_size_x = placing.tile_set.tile_size.x
-	tile_size_y = placing.tile_set.tile_size.y
+	# Старт открытого мира, возвращает координаты игрока
 	player.position = self.start(GlobalVariables.CurrentWorld, tile_size_x, tile_size_y)
+	# Загрузка списка анимаций из специальной строго типизированной таблицы
 	GlobalVariables.animations_list = self.get_animations()
+	# Отладочный вывод содержания
 	print("Loaded animations_list: ", GlobalVariables.animations_list)
-	# Загрузка сложного объекта из файла
-	smth_saved = self.load_by("Пример лютой еболы")
-	# Отладочный вывод (содержания)
+	# При первом запуске пустой словарь
+	if GlobalVariables.animations_list.is_empty():
+		GlobalVariables.animations_list["Чё за хуйня?"] = 228
+	# А теперб вариант для альтушек
+	# Загрузка списка анимаций по ключу из кучи прочих данных, строгой типизации нет
+	smth_saved = self.load_by("animations_list")
+	# Отладочный вывод содержания
 	print("Loaded example: ", smth_saved)
-	# При первом запуске по ключу ничего не хранится, очевидно
+	# При первом запуске по ключу ничего не хранится (nil), а не пустой словарь
 	if !smth_saved:
-		smth_saved = {
-			"glossary": {
-				"title": 228,
-				"GlossDiv": {
-					"title": "S",
-					"GlossList": {
-						"GlossEntry": {
-							"ID": "SGML",
-							"SortAs": "SGML",
-							"GlossTerm": "Standard Generalized Markup Language",
-							"Acronym": "SGML",
-							"Abbrev": "ISO 8879:1986",
-							"GlossDef": {
-								"para": "A meta-markup language, used to create markup languages such as DocBook.",
-								"GlossSeeAlso": ["GML", "XML"]
-							},
-							"GlossSee": "markup"
-						}
-					}
-				}
-			}
-		}
-	GlobalVariables.animations_list["Чё за хуйня?"] = 228
+		smth_saved = { "Чё за хуйня?": 228 }
 
 func _physics_process(_delta):
-	FreezeMonsters()
+	freeze_monsters()
 	self.set_view_center(player.position.x, player.position.y, false)
 	unload_all()
 	load_all()
@@ -198,11 +173,14 @@ func unload_all():
 func _notification(what):
 	match what:
 		NOTIFICATION_PREDELETE:
-			# Сохранение сложного объекта по ключу
-			self.save_as("Пример лютой еболы", smth_saved)
-			# Отладочный вывод (проверка содержания и типа данных)
-			print("Saved example: ", smth_saved)
-			print("Type of mem: ", typeof(smth_saved["glossary"]["title"]))
-			self.exit(player.position, GlobalVariables.animations_list)
+			# Отладочный вывод варианта строгой типизации
 			print("Saved animations_list: ", GlobalVariables.animations_list)
+			# Отладочный вывод альтушек (проверка содержания и типа данных)
+			print("Saved example: ", smth_saved)
+			print("Type of mem: ", typeof(smth_saved["Чё за хуйня?"]))
+			# Сохранение списка анимаций в кучу без строгой типизации
+			self.save_as("animations_list", smth_saved)
+			# Выход из открытого мира пока принимает список анимаций для сохранения в строгой таблице
+			self.exit(player.position, GlobalVariables.animations_list)
+			# Сохранение
 			unload_all()
